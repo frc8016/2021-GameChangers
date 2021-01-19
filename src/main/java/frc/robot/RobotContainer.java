@@ -26,7 +26,7 @@ public class RobotContainer {
   public RobotContainer() {
     // Configure the button bindings
     configureButtonBindings();
-  }
+  } //this is so handy, am
 
   /**
    * Use this method to define your button->command mappings. Buttons can be created by

@@ -23,7 +23,7 @@ public class DriveTrain extends SubsystemBase {
   private SpeedControllerGroup rightMotors = new SpeedControllerGroup(rightFrontMotor, rightBackMotor);
 
   private DifferentialDrive differentialDrive = new DifferentialDrive(leftMotors, rightMotors);
-  
+
   public void ArcadeDrive(double speed, double rotation){
     differentialDrive.arcadeDrive(speed, rotation);
   }

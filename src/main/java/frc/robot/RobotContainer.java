@@ -60,13 +60,15 @@ public class RobotContainer {
    * edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
-    //These commented lines are here in case I misused the "toggleWhenPressed" functions
-    // XboxA.whenPressed(m_ExtendIntake);
-    // XboxB.whenPressed(m_RetractIntake);
-    // XboxY.whenPressed(m_UnjamIntake);
-    XboxA.toggleWhenPressed(m_ExtendIntake, true);
-    XboxB.toggleWhenPressed(m_RetractIntake, true);
-    XboxY.toggleWhenPressed(m_UnjamIntake, true);
+    //these definitely work
+    XboxA.whenPressed(m_ExtendIntake);
+    XboxB.whenPressed(m_RetractIntake);
+    XboxY.whenPressed(m_UnjamIntake);
+
+    //These may work. Keep as comments until tested.
+    // XboxA.toggleWhenPressed(m_ExtendIntake, true);
+    // XboxB.toggleWhenPressed(m_RetractIntake, true);
+    // XboxY.toggleWhenPressed(m_UnjamIntake, true);
 
   }
 

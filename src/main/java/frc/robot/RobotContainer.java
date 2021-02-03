@@ -5,9 +5,12 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.GenericHID;
+import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.commands.ArcadeDrive;
 import frc.robot.commands.ExtendIntake;
+import frc.robot.commands.RetractIntake;
+import frc.robot.commands.UnjamIntake;
 import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.Intake;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -26,14 +29,18 @@ public class RobotContainer {
   private final DriveTrain m_driveTrain = new DriveTrain();
   private final Intake m_Intake = new Intake();
   //Command
+
   private final ArcadeDrive m_arcadeDrive = new ArcadeDrive(m_driveTrain);
   private final ExtendIntake m_ExtendIntake = new ExtendIntake(m_Intake);
+  private final RetractIntake m_RetractIntake = new RetractIntake(m_Intake);
+  private final UnjamIntake m_UnjamIntake = new UnjamIntake(m_Intake);
   
 
   //IO
   private final XboxController operatorController = new XboxController(Constants.XboxControllerPort);
   private final JoystickButton XboxA = new JoystickButton(operatorController, Constants.ButtonA);
   private final JoystickButton XboxB = new JoystickButton(operatorController, Constants.ButtonB);
+  private final JoystickButton XboxY = new JoystickButton(operatorController, Constants.ButtonY);
 
 
   
@@ -42,6 +49,7 @@ public class RobotContainer {
     // Configure the button bindings
     configureButtonBindings();
     m_driveTrain.setDefaultCommand(m_arcadeDrive);
+    m_Intake.setDefaultCommand(m_RetractIntake);
   }
 
 
@@ -52,8 +60,13 @@ public class RobotContainer {
    * edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
-    XboxA.whenPressed(m_ExtendIntake);
-    XboxB.whenPressed(m_RetractIntake);
+    //These commented lines are here in case I misused the "toggleWhenPressed" functions
+    // XboxA.whenPressed(m_ExtendIntake);
+    // XboxB.whenPressed(m_RetractIntake);
+    // XboxY.whenPressed(m_UnjamIntake);
+    XboxA.toggleWhenPressed(m_ExtendIntake, true);
+    XboxB.toggleWhenPressed(m_RetractIntake, true);
+    XboxY.toggleWhenPressed(m_UnjamIntake, true);
 
   }
 

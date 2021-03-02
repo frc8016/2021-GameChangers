@@ -4,9 +4,8 @@
 
 package frc.robot.subsystems;
 
-import edu.wpi.first.wpilibj.DoubleSolenoid;
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Spark;
-import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
@@ -15,8 +14,11 @@ public class Intake extends SubsystemBase {
 
   private final Spark IntakeMotor = new Spark(Constants.IntakeMotorPort);
 
-  private final DoubleSolenoid IntakeSolenoid = new DoubleSolenoid(Constants.IntakeSolenoidPort1,
-      Constants.IntakeSolenoidPort2);
+  private final Spark IntakeActuationMotor = new Spark(Constants.IntakeActuationMotorPort);
+
+  DigitalInput upperLimitSwitch = new DigitalInput(Constants.IntakeUpperLimitSwitchPort);
+  DigitalInput lowerLimitSwitch = new DigitalInput(Constants.IntakeLowerLimitSwitchPort);
+
 
 //Call these methods to set the motor direction for the intake
   public void runIntakeMotorsForward() {
@@ -32,12 +34,27 @@ public class Intake extends SubsystemBase {
   }
 
 //Use this to retract or extend the intake.
+
+//Use caution when testing the RetractIntake and ExtendIntake methods.
+//They could accidentally be set to run the motors in the opposite direction as intended.
   public void retractIntake() {
-    IntakeSolenoid.set(Value.kReverse);
-  }
+
+    if (upperLimitSwitch.get()) {
+      IntakeActuationMotor.set(0);
+    }
+    else {
+      IntakeActuationMotor.set(Constants.IntakeActuationMotorScalar);
+    }
+ }
+
+
   public void extendIntake() {
-    IntakeSolenoid.set(Value.kForward);
-  }
+    if (lowerLimitSwitch.get()) {
+      IntakeActuationMotor.set(0);
+    }
+    else {
+      IntakeActuationMotor.set(-Constants.IntakeActuationMotorScalar);
+    }  }
 
   /**
    * Creates a new Intake.

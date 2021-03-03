@@ -11,8 +11,10 @@ import frc.robot.commands.ArcadeDrive;
 import frc.robot.commands.ExtendIntake;
 import frc.robot.commands.RetractIntake;
 import frc.robot.commands.UnjamIntake;
+import frc.robot.commands.exampleRamseteCommand;
 import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.Intake;
+import frc.robot.subsystems.TrajectoryDrive;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 
@@ -28,12 +30,16 @@ public class RobotContainer {
   //Subsystem
   private final DriveTrain m_driveTrain = new DriveTrain();
   private final Intake m_Intake = new Intake();
+  private final TrajectoryDrive m_trajectoryDrive = new TrajectoryDrive();
+
+  
   //Command
 
   private final ArcadeDrive m_arcadeDrive = new ArcadeDrive(m_driveTrain);
   private final ExtendIntake m_ExtendIntake = new ExtendIntake(m_Intake);
   private final RetractIntake m_RetractIntake = new RetractIntake(m_Intake);
   private final UnjamIntake m_UnjamIntake = new UnjamIntake(m_Intake);
+  private final exampleRamseteCommand m_ramseteCommand = new exampleRamseteCommand(m_trajectoryDrive);
   
 
   //IO
@@ -42,6 +48,7 @@ public class RobotContainer {
   private final JoystickButton XboxB = new JoystickButton(operatorController, Constants.ButtonB);
   private final JoystickButton XboxY = new JoystickButton(operatorController, Constants.ButtonY);
 
+  
 
   
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
@@ -78,7 +85,9 @@ public class RobotContainer {
    * @return the command to run in autonomous
    */
   public Command getAutonomousCommand() {
-    // An ExampleCommand will run in autonomous
+
+
     return null;
+    
   }
 }

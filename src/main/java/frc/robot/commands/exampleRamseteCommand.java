@@ -7,7 +7,7 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants;
-import frc.robot.subsystems.TrajectoryDrive;
+import frc.robot.subsystems.DriveTrain;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -30,14 +30,14 @@ import edu.wpi.first.wpilibj2.command.RamseteCommand;
 
 public class exampleRamseteCommand extends CommandBase {
   /** Creates a new exampleRamseteCommand. */
-  TrajectoryDrive m_trajectoryDrive;
+  DriveTrain m_driveTrain;
   RamseteCommand ramseteCommand;
   Trajectory trajectory;
-  public exampleRamseteCommand(TrajectoryDrive trajectoryDrive) {
-    m_trajectoryDrive = trajectoryDrive;
+  public exampleRamseteCommand(DriveTrain driveTrain) {
+    m_driveTrain = driveTrain;
 
     // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(trajectoryDrive);
+    addRequirements(driveTrain);
 
     String trajectoryJSON = "paths/SomePath.wpilib.json";
     trajectory = new Trajectory(); 
@@ -50,19 +50,19 @@ public class exampleRamseteCommand extends CommandBase {
 
     ramseteCommand = new RamseteCommand(
       trajectory, 
-      m_trajectoryDrive::getPose,
+      m_driveTrain::getPose,
       new RamseteController(Constants.TrajectoryConstants.ramseteGainB, Constants.TrajectoryConstants.ramseteGainZeta),
       new SimpleMotorFeedforward(Constants.TrajectoryConstants.feedForwardKs,
        Constants.TrajectoryConstants.feedForwardKv,
        Constants.TrajectoryConstants.feedForwardKa
        ),
       Constants.kDriveKinematics,
-      m_trajectoryDrive::getWheelSpeeds,
+      m_driveTrain::getWheelSpeeds,
       new PIDController(Constants.TrajectoryConstants.feedBackKp, 0, 0),
       new PIDController(Constants.TrajectoryConstants.feedBackKp, 0, 0),
       //ramsete command passes volts to callback
-      m_trajectoryDrive::tankDriveVolts,
-      m_trajectoryDrive
+      m_driveTrain::tankDriveVolts,
+      m_driveTrain
     );
     
     //reset odometry to trajectory starting position
@@ -77,14 +77,14 @@ public class exampleRamseteCommand extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    m_trajectoryDrive.resetOdometry(trajectory.getInitialPose());
+    m_driveTrain.resetOdometry(trajectory.getInitialPose());
     
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    ramseteCommand.andThen(()-> m_trajectoryDrive.tankDriveVolts(0, 0));
+    ramseteCommand.andThen(()-> m_driveTrain.tankDriveVolts(0, 0));
     
   }
 

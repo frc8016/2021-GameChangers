@@ -14,7 +14,6 @@ import frc.robot.commands.UnjamIntake;
 import frc.robot.commands.exampleRamseteCommand;
 import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.Intake;
-import frc.robot.subsystems.TrajectoryDrive;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 
@@ -30,7 +29,7 @@ public class RobotContainer {
   //Subsystem
   private final DriveTrain m_driveTrain = new DriveTrain();
   private final Intake m_Intake = new Intake();
-  private final TrajectoryDrive m_trajectoryDrive = new TrajectoryDrive();
+  
 
   
   //Command
@@ -39,7 +38,7 @@ public class RobotContainer {
   private final ExtendIntake m_ExtendIntake = new ExtendIntake(m_Intake);
   private final RetractIntake m_RetractIntake = new RetractIntake(m_Intake);
   private final UnjamIntake m_UnjamIntake = new UnjamIntake(m_Intake);
-  private final exampleRamseteCommand m_ramseteCommand = new exampleRamseteCommand(m_trajectoryDrive);
+  private final exampleRamseteCommand m_eExampleRamseteCommand = new exampleRamseteCommand(m_driveTrain);
   
 
   //IO

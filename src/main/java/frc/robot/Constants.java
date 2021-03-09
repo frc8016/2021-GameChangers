@@ -27,11 +27,18 @@ public final class Constants {
 	public static final int joyZAxis = 2;
 
 	public static final int IntakeMotorPort = 0;
+	public static final int IntakeActuationMotorPort = 1;
 
-	public static final int IntakeSolenoidPort1 = 0;
-	public static final int IntakeSolenoidPort2 = 1;
+	public static final int IntakeUpperLimitSwitchPort = 0;
+	public static final int IntakeLowerLimitSwitchPort = 1;
+
 
 	public static final double IntakeMotorSpeedScalar = .5;
+	public static final double IntakeActuationMotorScalar = 0.25;
+	/**The value of IntakeActuationMotorScalar was chosen arbotrarily
+	 and will likely need to be adjusted. **/
+	
+
 
 	public static final int XboxControllerPort = 1;
 

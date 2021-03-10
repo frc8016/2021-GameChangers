@@ -34,15 +34,15 @@ public class DriveTrain extends SubsystemBase {
   
   private final DifferentialDrive differentialDrive = new DifferentialDrive(leftMotors, rightMotors);
 
-  private final Encoder leftEncoder = new Encoder(0,1);
-  private final Encoder rightEncoder = new Encoder(2, 3);
+  private final Encoder leftEncoder = new Encoder(Constants.leftEncoderDIO[0],Constants.leftEncoderDIO[1]);
+  private final Encoder rightEncoder = new Encoder(Constants.rightEncoderDIO[0], Constants.rightEncoderDIO[1]);
   
 //creates odometry class
   private final DifferentialDriveOdometry m_odometry;
 
 
  
-  private final PigeonIMU pigeonIMU = new PigeonIMU(0);
+  private final PigeonIMU pigeonIMU = new PigeonIMU(Constants.pigeonIMUPort);
   
 
 //transforms pigeonIMY yaw output into a Rotation2d object --!! may be returning heading in degrees instead of rotation2d

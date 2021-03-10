@@ -22,6 +22,11 @@ public final class Constants {
 	public static final int rightFrontMotorPort = 2;
 	public static final int rightBackMotorPort = 3;
 
+	public static final int [] leftEncoderDIO = {0,1};
+	public static final int [] rightEncoderDIO = {2,3};
+
+	public static final int pigeonIMUPort = 0;
+
 	public static final int joystickPort = 0;
 
 	public static final int joyXAxis = 0;

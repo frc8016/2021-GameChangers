@@ -38,7 +38,7 @@ public class RobotContainer {
   private final ExtendIntake m_ExtendIntake = new ExtendIntake(m_Intake);
   private final RetractIntake m_RetractIntake = new RetractIntake(m_Intake);
   private final UnjamIntake m_UnjamIntake = new UnjamIntake(m_Intake);
-  private final exampleRamseteCommand m_eExampleRamseteCommand = new exampleRamseteCommand(m_driveTrain);
+  private final exampleRamseteCommand m_ExampleRamseteCommand = new exampleRamseteCommand(m_driveTrain);
   
 
   //IO

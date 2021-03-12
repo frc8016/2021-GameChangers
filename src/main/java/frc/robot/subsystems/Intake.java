@@ -16,8 +16,8 @@ public class Intake extends SubsystemBase {
 
   private final Spark IntakeActuationMotor = new Spark(Constants.IntakeActuationMotorPort);
 
-  DigitalInput upperLimitSwitch = new DigitalInput(Constants.IntakeUpperLimitSwitchPort);
-  DigitalInput lowerLimitSwitch = new DigitalInput(Constants.IntakeLowerLimitSwitchPort);
+  private final DigitalInput upperLimitSwitch = new DigitalInput(Constants.IntakeUpperLimitSwitchPort);
+  private final DigitalInput lowerLimitSwitch = new DigitalInput(Constants.IntakeLowerLimitSwitchPort);
 
 
 //Call these methods to set the motor direction for the intake

@@ -103,9 +103,11 @@ public final class Constants {
 		public static final double ramseteGainZeta = .7;
 		public static final double distancePerPulse = 0;
 
-		
-
-		
-
 	}
+
+	public static final class GalacticSearchConstants {
+		public static final double[][] detectionDefaultError = { { 0.1, 0.1, 0.1 }, { 0.1, 0.1, 0.1 },
+				{ 0.1, 0.1, 0.1 } };
+	}
+
 }

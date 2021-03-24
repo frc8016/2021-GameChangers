@@ -108,4 +108,20 @@ public final class Constants {
 		
 
 	}
+
+
+	public final class ProjectileConstants{
+
+		public static final double targetHight = 0;
+		public static final double lenseAngle = 0;
+		public static final double lenseHeight = 0;
+
+		public static final double g = -9.81;
+		public static final double y = 0;
+		public static final double yInitial = 0;
+		public static final double tanTheta_d = 0;
+		//cosine of shooter angle squared
+		public static final double cosThetaSqrd = 0;
+
+	}
 }

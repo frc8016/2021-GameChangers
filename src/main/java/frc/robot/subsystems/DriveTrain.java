@@ -6,8 +6,8 @@ package frc.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
-
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 // import edu.wpi.first.wpilibj.Encoder; // may not be the correct encoder import
 // import edu.wpi.first.wpilibj.geometry.Pose2d;
@@ -18,9 +18,7 @@ import edu.wpi.first.wpilibj.SpeedControllerGroup;
 // import edu.wpi.first.wpilibj.kinematics.DifferentialDriveWheelSpeeds;
 // import com.ctre.phoenix.sensors.PigeonIMU;
 import frc.robot.Constants;
-
-
-
+import frc.robot.commands.ArcadeDrive;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class DriveTrain extends SubsystemBase {
@@ -67,6 +65,12 @@ public class DriveTrain extends SubsystemBase {
     // resetEncoders();
 
     // m_odometry = new DifferentialDriveOdometry(getHeading());
+    SmartDashboard.putNumber("Left Front Motor", leftFrontMotor.get());
+    SmartDashboard.putNumber("Left Back Motor", leftBackMotor.get());
+    SmartDashboard.putNumber("Right Front Motor", rightFrontMotor.get());
+    SmartDashboard.putNumber("Right Back Motor", rightBackMotor.get());
+    SmartDashboard.putNumber("Left Motor Group", leftMotors.get());
+    SmartDashboard.putNumber("Right Motor Group", rightMotors.get());
   }
 
   @Override

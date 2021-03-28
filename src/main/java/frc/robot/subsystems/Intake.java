@@ -22,11 +22,11 @@ public class Intake extends SubsystemBase {
 
 //Call these methods to set the motor direction for the intake
   public void runIntakeMotorsForward() {
-    IntakeMotor.set(-Constants.IntakeMotorSpeedScalar);
+    IntakeMotor.set(Constants.IntakeMotorSpeedScalar);
   }
 
   public void runIntakeMotorsBackwards() {
-    IntakeMotor.set(Constants.IntakeMotorSpeedScalar);
+    IntakeMotor.set(-Constants.IntakeMotorSpeedScalar);
   }
 
   public void runIntakeMotorsOff() {
@@ -43,7 +43,7 @@ public class Intake extends SubsystemBase {
       IntakeActuationMotor.set(0);
     }
     else {
-      IntakeActuationMotor.set(Constants.IntakeActuationMotorScalar);
+      IntakeActuationMotor.set(-Constants.IntakeActuationMotorScalar);
     }
  }
 
@@ -53,7 +53,7 @@ public class Intake extends SubsystemBase {
       IntakeActuationMotor.set(0);
     }
     else {
-      IntakeActuationMotor.set(-Constants.IntakeActuationMotorScalar);
+      IntakeActuationMotor.set(Constants.IntakeActuationMotorScalar);
     }  
   }
 

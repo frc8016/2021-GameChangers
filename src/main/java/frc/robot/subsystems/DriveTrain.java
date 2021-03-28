@@ -29,10 +29,10 @@ public class DriveTrain extends SubsystemBase {
   private final WPI_TalonSRX rightFrontMotor = new WPI_TalonSRX(Constants.rightFrontMotorPort);
   private final WPI_TalonSRX rightBackMotor = new WPI_TalonSRX(Constants.rightBackMotorPort);
 
-  private final SpeedControllerGroup leftMotors = new SpeedControllerGroup(leftFrontMotor, leftBackMotor);
-  private final SpeedControllerGroup rightMotors = new SpeedControllerGroup(rightFrontMotor, rightBackMotor);
+  private  SpeedControllerGroup leftMotors = new SpeedControllerGroup(leftFrontMotor, leftBackMotor);
+  private  SpeedControllerGroup rightMotors = new SpeedControllerGroup(rightFrontMotor, rightBackMotor);
   
-  private final DifferentialDrive differentialDrive = new DifferentialDrive(leftMotors, rightMotors);
+  private DifferentialDrive differentialDrive = new DifferentialDrive(leftMotors, rightMotors);
 
   // private final Encoder leftEncoder = new Encoder(Constants.leftEncoderDIO[0],Constants.leftEncoderDIO[1]);
   // private final Encoder rightEncoder = new Encoder(Constants.rightEncoderDIO[0], Constants.rightEncoderDIO[1]);
@@ -93,7 +93,7 @@ public class DriveTrain extends SubsystemBase {
   
   //drive robot with arcade drive
   public void ArcadeDrive(double speed, double rotation){
-    differentialDrive.arcadeDrive(speed, rotation);
+    differentialDrive.arcadeDrive(-speed, rotation);
   }
 
   //directly controls left and right motors with voltages

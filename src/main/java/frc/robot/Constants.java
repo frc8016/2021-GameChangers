@@ -106,8 +106,40 @@ public final class Constants {
 	}
 
 	public static final class GalacticSearchConstants {
-		public static final double[][] detectionDefaultError = { { 0.1, 0.1, 0.1 }, { 0.1, 0.1, 0.1 },
-				{ 0.1, 0.1, 0.1 } };
+		public static final double[][] defaultDetectionError = { 	{ 0.1, 0.1 }, 
+																	{ 0.1, 0.1 },
+																	{ 0.1, 0.1 } 	};
+		//Custom errors if required. End is in format [color (Red or Blue)][path (A or B)][location(1,2,3)]
+		public static final double[][] customDetectionErrorRA1 = null;
+		public static final double[][] customDetectionErrorRA2 = null;
+		public static final double[][] customDetectionErrorRA3 = null;
+		public static final double[][] customDetectionErrorRB1 = null;
+		public static final double[][] customDetectionErrorRB2 = null;
+		public static final double[][] customDetectionErrorRB3 = null;
+		public static final double[][] customDetectionErrorBA1 = null;
+		public static final double[][] customDetectionErrorBA2 = null;
+		public static final double[][] customDetectionErrorBA3 = null;
+		public static final double[][] customDetectionErrorBB1 = null;
+		public static final double[][] customDetectionErrorBB2 = null;
+		public static final double[][] customDetectionErrorBB3 = null;
+
+		//locations for power cells from limelight
+		public static final double[][] pathRA1 = { 	
+			{ 0.234678, -0.66378459 }, 
+			{ 0.9235467, -0.234672 },
+			{ 0.1, 0.1, 0.1 } 	};
+		public static final double[][] pathRA2 = null;
+		public static final double[][] pathRA3 = null;
+		public static final double[][] pathRB1 = null;
+		public static final double[][] pathRB2 = null;
+		public static final double[][] pathRB3 = null;
+		public static final double[][] pathBA1 = null;
+		public static final double[][] pathBA2 = null;
+		public static final double[][] pathBA3 = null;
+		public static final double[][] pathBB1 = null;
+		public static final double[][] pathBB2 = null;
+		public static final double[][] pathBB3 = null;
+
 	}
 
 }

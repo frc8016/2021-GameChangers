@@ -8,6 +8,7 @@ import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.commands.ArcadeDrive;
+import frc.robot.commands.DriveStraight;
 import frc.robot.commands.ExtendIntake;
 import frc.robot.commands.RetractIntake;
 import frc.robot.commands.UnjamIntake;
@@ -41,14 +42,17 @@ public class RobotContainer {
   private final RetractIntake m_RetractIntake = new RetractIntake(m_Intake);
   private final UnjamIntake m_UnjamIntake = new UnjamIntake(m_Intake);
   private final exampleRamseteCommand m_ExampleRamseteCommand = new exampleRamseteCommand(m_driveTrain);
-  
+  private final DriveStraight m_DriveStraight = new DriveStraight(m_driveTrain);
 
   //IO
+  private final Joystick driverController = new Joystick(Constants.joystickPort);
   private final XboxController operatorController = new XboxController(Constants.XboxControllerPort);
   private final JoystickButton XboxA = new JoystickButton(operatorController, Constants.ButtonA);
   private final JoystickButton XboxB = new JoystickButton(operatorController, Constants.ButtonB);
   private final JoystickButton XboxY = new JoystickButton(operatorController, Constants.ButtonY);
-
+  private final JoystickButton Joy1 = new JoystickButton(driverController, Constants.button1);
+  private final JoystickButton Joy2 = new JoystickButton(driverController, Constants.button2);
+  private final JoystickButton Joy3 = new JoystickButton(driverController, Constants.button3);
 
   
 
@@ -73,6 +77,8 @@ public class RobotContainer {
     XboxA.whenPressed(m_ExtendIntake);
     XboxB.whenPressed(m_RetractIntake);
     XboxY.whenPressed(m_UnjamIntake);
+    Joy1.whenPressed(m_DriveStraight);
+    Joy2.whenPressed(m_arcadeDrive);
 
     //These may work. Keep as comments until tested.
     // XboxA.toggleWhenPressed(m_ExtendIntake, true);

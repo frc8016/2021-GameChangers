@@ -132,6 +132,7 @@ public class DriveTrain extends SubsystemBase {
   // resets gyro yaw value
   public void zeroHeading(){
     pigeonIMU.setYaw(0);
+    pigeonIMU.setFusedHeading(0);
   }
 
   public double getTurnRate(){
@@ -142,7 +143,14 @@ public class DriveTrain extends SubsystemBase {
     
   }
 
-
+  public void driveToZero(double speed){
+    double actualHeading = pigeonIMU.getFusedHeading();
+    double p = Constants.pDriveStraight;
+    double error = actualHeading; 
+    double correction = error*p;
+    this.ArcadeDrive(speed, correction);
+    
+  }
 
 
 

@@ -22,6 +22,8 @@ public class Shooter extends SubsystemBase {
 
   private final Encoder hoodEncoder = new Encoder(Constants.hoodEncoderDIO[0],Constants.hoodEncoderDIO[1]);
 
+  private final Spark intakeMotor = new Spark(Constants.shooterIntakeMotor);
+
 
 
 
@@ -44,6 +46,18 @@ public class Shooter extends SubsystemBase {
     }
 
   }
+
+  public void runShooterIntake() {
+    intakeMotor.set(Constants.shooterIntakeScaler);
+  }
+
+   public void stopShooterIntake() {
+    intakeMotor.set(0);
+  }
+
+  public void unjamShooterIntake() {
+    intakeMotor.set(-Constants.shooterIntakeScaler);
+  } 
 
 
   public Shooter() {}

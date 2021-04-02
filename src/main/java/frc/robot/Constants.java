@@ -47,6 +47,9 @@ public final class Constants {
 
 	public static final int [] hoodEncoderDIO = {4,5};
 
+	public static final int shooterIntakeMotorPort = null;
+	public static final double shooterIntakeMotorScaler = 0.5;
+
 
 //scalars
 	public static final double IntakeMotorSpeedScalar = .5;

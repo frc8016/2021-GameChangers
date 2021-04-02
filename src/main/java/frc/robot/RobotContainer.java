@@ -5,16 +5,16 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.GenericHID;
-import edu.wpi.first.wpilibj.Joystick;
+// import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.commands.ArcadeDrive;
 import frc.robot.commands.ExtendIntake;
 import frc.robot.commands.RetractIntake;
 import frc.robot.commands.UnjamIntake;
-import frc.robot.commands.exampleRamseteCommand;
+// import frc.robot.commands.exampleRamseteCommand;
 import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.Intake;
-import frc.robot.subsystems.Shooter;
+// import frc.robot.subsystems.Shooter;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 
@@ -30,7 +30,7 @@ public class RobotContainer {
   //Subsystem
   private final DriveTrain m_driveTrain = new DriveTrain();
   private final Intake m_Intake = new Intake();
-  private final Shooter m_Shooter = new Shooter();
+  // private final Shooter m_Shooter = new Shooter();
   
 
   
@@ -40,7 +40,7 @@ public class RobotContainer {
   private final ExtendIntake m_ExtendIntake = new ExtendIntake(m_Intake);
   private final RetractIntake m_RetractIntake = new RetractIntake(m_Intake);
   private final UnjamIntake m_UnjamIntake = new UnjamIntake(m_Intake);
-  private final exampleRamseteCommand m_ExampleRamseteCommand = new exampleRamseteCommand(m_driveTrain);
+  // private final exampleRamseteCommand m_ExampleRamseteCommand = new exampleRamseteCommand(m_driveTrain);
   
 
   //IO
@@ -48,6 +48,7 @@ public class RobotContainer {
   private final JoystickButton XboxA = new JoystickButton(operatorController, Constants.ButtonA);
   private final JoystickButton XboxB = new JoystickButton(operatorController, Constants.ButtonB);
   private final JoystickButton XboxY = new JoystickButton(operatorController, Constants.ButtonY);
+  private final JoystickButton XboxMenu = new JoystickButton(operatorController, Constants.ButtonMenu);
 
 
   
@@ -72,7 +73,7 @@ public class RobotContainer {
     //these definitely work
     XboxA.whenPressed(m_ExtendIntake);
     XboxB.whenPressed(m_RetractIntake);
-    XboxY.whenPressed(m_UnjamIntake);
+    XboxMenu.whenPressed(m_UnjamIntake);
 
     //These may work. Keep as comments until tested.
     // XboxA.toggleWhenPressed(m_ExtendIntake, true);

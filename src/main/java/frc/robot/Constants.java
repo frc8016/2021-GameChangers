@@ -37,20 +37,20 @@ public final class Constants {
 	public static final int IntakeMotorPort = 0;
 	public static final int IntakeActuationMotorPort = 1;
 
-	public static final int IntakeUpperLimitSwitchPort = 0;
-	public static final int IntakeLowerLimitSwitchPort = 1;
+	public static final int IntakeUpperLimitSwitchPort = 4;
+	public static final int IntakeLowerLimitSwitchPort = 5;
 
 //shooter
 	public static final int flywheelMotorPort = 0;
 	public static final int hoodMotorPort = 1;
 	public static final int hoodHomeLimitSwitchPort = 1;
 
-	public static final int [] hoodEncoderDIO = {4,5};
+	public static final int [] hoodEncoderDIO = {6,7};
 
 
 //scalars
-	public static final double IntakeMotorSpeedScalar = .5;
-	public static final double IntakeActuationMotorScalar = 0.25;
+	public static final double IntakeMotorSpeedScalar = 0.4;
+	public static final double IntakeActuationMotorScalar = 0.4;
 	public static final double hoodHomingSpeedScalar = 0.25;
 	public static final double flywheelMotorSpeedScalar = 0.75;
 

@@ -39,22 +39,23 @@ public class Intake extends SubsystemBase {
 //They could accidentally be set to run the motors in the opposite direction as intended.
   public void retractIntake() {
 
-    if (upperLimitSwitch.get()) {
+    if (!upperLimitSwitch.get()) {
       IntakeActuationMotor.set(0);
     }
     else {
-      IntakeActuationMotor.set(Constants.IntakeActuationMotorScalar);
+      IntakeActuationMotor.set(-Constants.IntakeActuationMotorScalar);
     }
  }
 
 
   public void extendIntake() {
-    if (lowerLimitSwitch.get()) {
+    if (!lowerLimitSwitch.get()) {
       IntakeActuationMotor.set(0);
     }
     else {
-      IntakeActuationMotor.set(-Constants.IntakeActuationMotorScalar);
-    }  }
+      IntakeActuationMotor.set(Constants.IntakeActuationMotorScalar);
+    }  
+  }
 
   /**
    * Creates a new Intake.

@@ -45,7 +45,8 @@ public final class Constants {
 	public static final int button11 = 11;
 	public static final int button12 = 12;
 
-	public static final double pDriveStraight = 0.1;
+	public static final double pDriveStraight = 0.05;
+	public static final double iDriveStraight = 0.3;
 
 //intake
 	public static final int IntakeMotorPort = 0;

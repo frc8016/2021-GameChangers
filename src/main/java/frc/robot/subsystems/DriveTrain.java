@@ -6,16 +6,18 @@ package frc.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
-
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.Encoder; // may not be the correct encoder import
+import edu.wpi.first.wpilibj.Spark;
 import edu.wpi.first.wpilibj.geometry.Pose2d;
 import edu.wpi.first.wpilibj.geometry.Rotation2d;
 import edu.wpi.first.wpilibj.interfaces.Gyro;
 import edu.wpi.first.wpilibj.kinematics.DifferentialDriveKinematics;
 import edu.wpi.first.wpilibj.kinematics.DifferentialDriveOdometry;
 import edu.wpi.first.wpilibj.kinematics.DifferentialDriveWheelSpeeds;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+
 import com.ctre.phoenix.sensors.PigeonIMU;
 import frc.robot.Constants;
 
@@ -29,6 +31,9 @@ public class DriveTrain extends SubsystemBase {
   private final WPI_TalonSRX rightFrontMotor = new WPI_TalonSRX(Constants.rightFrontMotorPort);
   private final WPI_TalonSRX rightBackMotor = new WPI_TalonSRX(Constants.rightBackMotorPort);
 
+  //REMEMBER TO REMOVE!!!//
+  private final Spark cetrifugeTestMotor = new Spark(2);
+
   private final SpeedControllerGroup leftMotors = new SpeedControllerGroup(leftFrontMotor, leftBackMotor);
   private final SpeedControllerGroup rightMotors = new SpeedControllerGroup(rightFrontMotor, rightBackMotor);
   
@@ -36,6 +41,9 @@ public class DriveTrain extends SubsystemBase {
 
   private final Encoder leftEncoder = new Encoder(Constants.leftEncoderDIO[0],Constants.leftEncoderDIO[1]);
   private final Encoder rightEncoder = new Encoder(Constants.rightEncoderDIO[0], Constants.rightEncoderDIO[1]);
+
+  double integral = 0;
+  double dsError;
   
 //creates odometry class
   private final DifferentialDriveOdometry m_odometry;
@@ -67,12 +75,14 @@ public class DriveTrain extends SubsystemBase {
     resetEncoders();
 
     m_odometry = new DifferentialDriveOdometry(getHeading());
+
   }
 
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
     m_odometry.update(getHeading(), leftEncoder.getDistance(), rightEncoder.getDistance());
+    SmartDashboard.putNumber("Error", dsError);
 
   }
   //gets robots estimated pose --be sure to use consistent units
@@ -146,8 +156,11 @@ public class DriveTrain extends SubsystemBase {
   public void driveToZero(double speed){
     double actualHeading = pigeonIMU.getFusedHeading();
     double p = Constants.pDriveStraight;
+    double i = Constants.iDriveStraight;
     double error = actualHeading; 
-    double correction = error*p;
+    dsError = error;
+    integral += error*0.02;
+    double correction = error*p + integral*i;
 
     this.ArcadeDrive(speed, -correction);
     

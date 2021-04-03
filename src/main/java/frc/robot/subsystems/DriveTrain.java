@@ -93,7 +93,7 @@ public class DriveTrain extends SubsystemBase {
   
   //drive robot with arcade drive
   public void ArcadeDrive(double speed, double rotation){
-    differentialDrive.arcadeDrive(speed, rotation);
+    differentialDrive.arcadeDrive(-speed, rotation);
   }
 
   //directly controls left and right motors with voltages
@@ -148,7 +148,8 @@ public class DriveTrain extends SubsystemBase {
     double p = Constants.pDriveStraight;
     double error = actualHeading; 
     double correction = error*p;
-    this.ArcadeDrive(speed, correction);
+
+    this.ArcadeDrive(speed, -correction);
     
   }
 

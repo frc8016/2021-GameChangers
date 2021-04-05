@@ -32,6 +32,7 @@ public final class Constants {
 	public static final int joyXAxis = 0;
 	public static final int joyYAxis = 1;
 	public static final int joyZAxis = 2;
+	public static final int joyPaddleAxis = 3;
 	public static final int button1 = 1;
 	public static final int button2 = 2;
 	public static final int button3 = 3;

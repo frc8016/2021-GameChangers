@@ -19,6 +19,9 @@ import edu.wpi.first.wpilibj.kinematics.DifferentialDriveWheelSpeeds;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import com.ctre.phoenix.sensors.PigeonIMU;
+import com.revrobotics.CANSparkMax;
+import com.revrobotics.CANSparkMaxLowLevel.MotorType;
+
 import frc.robot.Constants;
 
 
@@ -33,6 +36,8 @@ public class DriveTrain extends SubsystemBase {
 
   //REMEMBER TO REMOVE!!!//
   private final Spark cetrifugeTestMotor = new Spark(2);
+  private final Spark shoteriantakeMotor = new Spark(3);
+  private final CANSparkMax shooterMotor = new CANSparkMax(10, MotorType.kBrushless);
 
   private final SpeedControllerGroup leftMotors = new SpeedControllerGroup(leftFrontMotor, leftBackMotor);
   private final SpeedControllerGroup rightMotors = new SpeedControllerGroup(rightFrontMotor, rightBackMotor);

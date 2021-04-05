@@ -57,18 +57,21 @@ public final class Constants {
 	public static final int IntakeLowerLimitSwitchPort = 1;
 
 //shooter
-	public static final int flywheelMotorPort = 0;
+	public static final int flywheelMotorPort = 10;
 	public static final int hoodMotorPort = 1;
 	public static final int hoodHomeLimitSwitchPort = 1;
 
 	public static final int [] hoodEncoderDIO = {4,5};
+
+	public static final int shooterIntakeMotorPort = 3;
+	public static final double shooterIntakeScalar = 0.5;
 
 
 //scalars
 	public static final double IntakeMotorSpeedScalar = .5;
 	public static final double IntakeActuationMotorScalar = 0.25;
 	public static final double hoodHomingSpeedScalar = 0.25;
-	public static final double flywheelMotorSpeedScalar = 0.75;
+	public static final double flywheelMotorSpeedScalar = 1;
 
 
 	/**The value of IntakeActuationMotorScalar was chosen arbotrarily
@@ -103,6 +106,7 @@ public final class Constants {
 	public static final double kTrackWidthMeters = 0;
 	public static final  DifferentialDriveKinematics kDriveKinematics =
 	new DifferentialDriveKinematics(kTrackWidthMeters);
+	public static final double flywheelSpeedScalar = 0;
 	
 
 	public final class TrajectoryConstants{

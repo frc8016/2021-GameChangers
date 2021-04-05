@@ -4,18 +4,15 @@
 
 package frc.robot.commands;
 
-import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.Constants;
 import frc.robot.subsystems.Shooter;
 
-public class ManualShooterSpeed extends CommandBase {
+public class StopShooter extends CommandBase {
   Shooter m_Shooter;
-  Joystick joystick = new Joystick(Constants.joystickPort);
-  /** Creates a new ManualShooterSpeed. */
-  public ManualShooterSpeed(Shooter shooter) {
-    m_Shooter = shooter;
+  /** Creates a new StopShooter. */
+  public StopShooter(Shooter shooter) {
     // Use addRequirements() here to declare subsystem dependencies.
+    m_Shooter = shooter;
     addRequirements(m_Shooter);
   }
 
@@ -26,7 +23,7 @@ public class ManualShooterSpeed extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    m_Shooter.runFlywheelMotorForward();
+    m_Shooter.runFlywheelMotorOff();
   }
 
   // Called once the command ends or is interrupted.

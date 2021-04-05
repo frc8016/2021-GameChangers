@@ -9,13 +9,18 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.commands.ArcadeDrive;
 import frc.robot.commands.DriveStraight;
+import frc.robot.commands.ManualShooterSpeed;
+import frc.robot.commands.RunShooterIntake;
+import frc.robot.commands.StopShooter;
+import frc.robot.commands.StopShooterIntake;
 // import frc.robot.commands.ExtendIntake;
 // import frc.robot.commands.RetractIntake;
 // import frc.robot.commands.UnjamIntake;
 // import frc.robot.commands.exampleRamseteCommand;
 import frc.robot.subsystems.DriveTrain;
 // import frc.robot.subsystems.Intake;
-// import frc.robot.subsystems.Shooter;
+import frc.robot.subsystems.Shooter;
+import frc.robot.subsystems.ShooterIntake;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 
@@ -31,8 +36,8 @@ public class RobotContainer {
   //Subsystem
   private final DriveTrain m_driveTrain = new DriveTrain();
   // private final Intake m_Intake = new Intake();
-  // private final Shooter m_Shooter = new Shooter();
-  
+  private final Shooter m_Shooter = new Shooter();
+  private final ShooterIntake m_ShooterIntake = new ShooterIntake();
 
   
   //Command
@@ -43,6 +48,10 @@ public class RobotContainer {
   // private final UnjamIntake m_UnjamIntake = new UnjamIntake(m_Intake);
   // private final exampleRamseteCommand m_ExampleRamseteCommand = new exampleRamseteCommand(m_driveTrain);
   private final DriveStraight m_DriveStraight = new DriveStraight(m_driveTrain);
+  private final ManualShooterSpeed m_ManualShooterSpeed = new ManualShooterSpeed(m_Shooter);
+  private final RunShooterIntake m_RunShooterIntake = new RunShooterIntake(m_ShooterIntake);
+  private final StopShooterIntake m_StopShooterIntake = new StopShooterIntake(m_ShooterIntake);
+  private final StopShooter m_StopShooter = new StopShooter(m_Shooter);
 
   //IO
   private final Joystick driverController = new Joystick(Constants.joystickPort);
@@ -52,6 +61,10 @@ public class RobotContainer {
   private final JoystickButton XboxY = new JoystickButton(operatorController, Constants.ButtonY);
   private final JoystickButton Joy7 = new JoystickButton(driverController, Constants.button7);
   private final JoystickButton Joy8 = new JoystickButton(driverController, Constants.button8);
+  private final JoystickButton Joy1 = new JoystickButton(driverController, Constants.button1);
+  private final JoystickButton Joy9 = new JoystickButton(driverController, Constants.button9);
+  private final JoystickButton Joy10 = new JoystickButton(driverController, Constants.button10);
+
 
   
 
@@ -62,6 +75,8 @@ public class RobotContainer {
     configureButtonBindings();
     m_driveTrain.setDefaultCommand(m_arcadeDrive);
     // m_Intake.setDefaultCommand(m_RetractIntake);
+    m_Shooter.setDefaultCommand(m_StopShooter);
+    m_ShooterIntake.setDefaultCommand(m_StopShooterIntake);
   }
 
 
@@ -78,6 +93,10 @@ public class RobotContainer {
     // XboxY.whenPressed(m_UnjamIntake);
     Joy7.whenPressed(m_DriveStraight);
     Joy8.whenPressed(m_arcadeDrive);
+    Joy9.whenPressed(m_StopShooter);
+    Joy10.whenPressed(m_ManualShooterSpeed);
+    Joy1.whenHeld(m_RunShooterIntake);
+    Joy1.whenReleased(m_StopShooterIntake);
 
     //These may work. Keep as comments until tested.
     // XboxA.toggleWhenPressed(m_ExtendIntake, true);

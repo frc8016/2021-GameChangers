@@ -21,12 +21,11 @@ public class Shooter extends SubsystemBase {
   /** Creates a new Shooter. */
   private final CANSparkMax flywheelMotor = new CANSparkMax(Constants.flywheelMotorPort, MotorType.kBrushless);
 
-  private final Spark hoodMotor = new Spark(Constants.hoodMotorPort);
+  // private final Spark hoodMotor = new Spark(Constants.hoodMotorPort);
 
-  private final DigitalInput hoodHomeLimitSwitch = new DigitalInput(Constants.hoodHomeLimitSwitchPort);
+  // private final DigitalInput hoodHomeLimitSwitch = new DigitalInput(Constants.hoodHomeLimitSwitchPort);
 
   private final CANEncoder hoodEncoder = flywheelMotor.getEncoder();
-
 
 
   //use these methods to control the flywheel
@@ -38,20 +37,20 @@ public class Shooter extends SubsystemBase {
     flywheelMotor.set(0);
   }
 
-  public void setFlywheelMotor(double speed) {
-      flywheelMotor.set(speed);
+  public void setFlywheelMotor() {
+      flywheelMotor.set(Constants.flywheelMotorSpeedScalar);
   }
 
-  public void homeHood() {
-    if (hoodHomeLimitSwitch.get()) {
-      hoodMotor.set(0);
-      hoodEncoder.setPosition(0.0);
-    }
-    else {
-      hoodMotor.set(Constants.hoodHomingSpeedScalar);
-    }
+  // public void homeHood() {
+  //   if (hoodHomeLimitSwitch.get()) {
+  //     hoodMotor.set(0);
+  //     hoodEncoder.setPosition(0.0);
+  //   }
+  //   else {
+  //     hoodMotor.set(Constants.hoodHomingSpeedScalar);
+  //   }
 
-  }
+  // }
 
 
   public Shooter() {}

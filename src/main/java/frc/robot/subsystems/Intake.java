@@ -43,7 +43,7 @@ public class Intake extends SubsystemBase {
       IntakeActuationMotor.set(0);
     }
     else {
-      IntakeActuationMotor.set(-Constants.IntakeActuationMotorScalar);
+      IntakeActuationMotor.set(-Constants.IntakeRetractMotorScalar);
     }
  }
 
@@ -53,7 +53,7 @@ public class Intake extends SubsystemBase {
       IntakeActuationMotor.set(0);
     }
     else {
-      IntakeActuationMotor.set(Constants.IntakeActuationMotorScalar);
+      IntakeActuationMotor.set(Constants.IntakeExtendMotorScalar);
     }  
   }
 

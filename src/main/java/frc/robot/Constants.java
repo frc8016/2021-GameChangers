@@ -70,8 +70,6 @@ public final class Constants {
 //scalars
 	public static final double IntakeMotorSpeedScalar = 0.4;
 	public static final double IntakeActuationMotorScalar = 0.4;
-	public static final double IntakeExtendMotorScalar = 0.3;
-	public static final double IntakeRetractMotorScalar = 0.5;
 	public static final double hoodHomingSpeedScalar = 0.25;
 	public static final double flywheelMotorSpeedScalar = 1;
 

@@ -12,11 +12,13 @@ import edu.wpi.first.wpilibj.Encoder; // may not be the correct encoder import
 import edu.wpi.first.wpilibj.Spark;
 import edu.wpi.first.wpilibj.geometry.Pose2d;
 import edu.wpi.first.wpilibj.geometry.Rotation2d;
-import edu.wpi.first.wpilibj.interfaces.Gyro;
-import edu.wpi.first.wpilibj.kinematics.DifferentialDriveKinematics;
 import edu.wpi.first.wpilibj.kinematics.DifferentialDriveOdometry;
 import edu.wpi.first.wpilibj.kinematics.DifferentialDriveWheelSpeeds;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.networktables.NetworkTable;
+import edu.wpi.first.networktables.NetworkTableEntry;
+import edu.wpi.first.networktables.NetworkTableInstance;
+import java.lang.Math;
 
 import com.ctre.phoenix.sensors.PigeonIMU;
 import com.revrobotics.CANSparkMax;
@@ -42,6 +44,9 @@ public class DriveTrain extends SubsystemBase {
 
   double integral = 0;
   double dsError;
+  double dTDIntegral;
+
+  double tx, ty, area;
 
   
 // creates odometry class
@@ -82,6 +87,11 @@ public class DriveTrain extends SubsystemBase {
     // This method will be called once per scheduler run
     m_odometry.update(getHeading(), leftEncoder.getDistance(), rightEncoder.getDistance());
     SmartDashboard.putNumber("Error", dsError);
+
+    NetworkTable table = NetworkTableInstance.getDefault().getTable("limelight");
+    tx = table.getEntry("tx").getDouble(0);
+    ty = table.getEntry("tx").getDouble(0);
+    area = table.getEntry("tx").getDouble(0);
 
 
   }
@@ -166,6 +176,23 @@ public class DriveTrain extends SubsystemBase {
 
     this.ArcadeDrive(speed, -correction);
     
+  }
+  public double getTargetDistance(){
+    double d = (Constants.targetHeight -  Constants.lenseHeight)/
+    Math.tan(ty + Constants.lenseAngle);
+    return d;
+  }
+  
+
+
+  public void driveToDistance(double desiredDistance){
+    double error = this.getTargetDistance() - desiredDistance;
+    dTDIntegral += error* .02;
+    double output = error* Constants.dTDProportional + dTDIntegral * Constants.dTDIntegral;
+    this.ArcadeDrive(output, 0);
+
+
+
   }
 
 

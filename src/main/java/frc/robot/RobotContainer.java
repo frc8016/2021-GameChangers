@@ -9,6 +9,7 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.commands.ArcadeDrive;
 import frc.robot.commands.DriveStraight;
+import frc.robot.commands.DriveToDistance;
 import frc.robot.commands.ManualShooterSpeed;
 import frc.robot.commands.RunShooterIntake;
 import frc.robot.commands.StopCentrifuge;
@@ -53,6 +54,7 @@ public class RobotContainer {
   private final RetractIntake m_RetractIntake = new RetractIntake(m_Intake);
   // private final UnjamIntake m_UnjamIntake = new UnjamIntake(m_Intake);
   // private final exampleRamseteCommand m_ExampleRamseteCommand = new exampleRamseteCommand(m_driveTrain);
+  private final DriveToDistance m_DriveToDistance = new DriveToDistance(m_driveTrain);
   private final DriveStraight m_DriveStraight = new DriveStraight(m_driveTrain);
   private final ManualShooterSpeed m_ManualShooterSpeed = new ManualShooterSpeed(m_Shooter);
   private final RunShooterIntake m_RunShooterIntake = new RunShooterIntake(m_ShooterIntake);

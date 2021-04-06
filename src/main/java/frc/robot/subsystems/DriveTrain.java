@@ -32,9 +32,6 @@ public class DriveTrain extends SubsystemBase {
   private final WPI_TalonSRX rightFrontMotor = new WPI_TalonSRX(Constants.rightFrontMotorPort);
   private final WPI_TalonSRX rightBackMotor = new WPI_TalonSRX(Constants.rightBackMotorPort);
 
-  //REMEMBER TO REMOVE!!!//
-  // private final Spark cetrifugeTestMotor = new Spark(2);
-
   private final SpeedControllerGroup leftMotors = new SpeedControllerGroup(leftFrontMotor, leftBackMotor);
   private final SpeedControllerGroup rightMotors = new SpeedControllerGroup(rightFrontMotor, rightBackMotor);
   
@@ -47,22 +44,22 @@ public class DriveTrain extends SubsystemBase {
   double dsError;
 
   
-//creates odometry class
-  // private final DifferentialDriveOdometry m_odometry;
+// creates odometry class
+  private final DifferentialDriveOdometry m_odometry;
 
 
  
-  // private final PigeonIMU pigeonIMU = new PigeonIMU(Constants.pigeonIMUPort);
+  private final PigeonIMU pigeonIMU = new PigeonIMU(Constants.pigeonIMUPort);
   
 
-//transforms pigeonIMY yaw output into a Rotation2d object --!! may be returning heading in degrees instead of rotation2d
-  // public Rotation2d getHeading(){
-  //   double [] ypr_deg = new double [3];
-  //   pigeonIMU.getYawPitchRoll(ypr_deg);
-  //   //if reversed multiply by -1d??
-  //   return Rotation2d.fromDegrees(Math.IEEEremainder(ypr_deg[0], 360.0d));
+// transforms pigeonIMY yaw output into a Rotation2d object --!! may be returning heading in degrees instead of rotation2d
+  public Rotation2d getHeading(){
+    double [] ypr_deg = new double [3];
+    pigeonIMU.getYawPitchRoll(ypr_deg);
+    //if reversed multiply by -1d??
+    return Rotation2d.fromDegrees(Math.IEEEremainder(ypr_deg[0], 360.0d));
 
-  // }
+  }
 
  
  
@@ -88,59 +85,59 @@ public class DriveTrain extends SubsystemBase {
 
 
   }
-  //gets robots estimated pose --be sure to use consistent units
-  // public Pose2d getPose(){
-  //   return m_odometry.getPoseMeters();
-  // }
+  // gets robots estimated pose --be sure to use consistent units
+  public Pose2d getPose(){
+    return m_odometry.getPoseMeters();
+  }
 
-  //returns the current drivetrain wheel speeds
-  // public DifferentialDriveWheelSpeeds getWheelSpeeds(){
-  //   return new DifferentialDriveWheelSpeeds(leftEncoder.getRate(), rightEncoder.getRate());
-  // }
+  // returns the current drivetrain wheel speeds
+  public DifferentialDriveWheelSpeeds getWheelSpeeds(){
+    return new DifferentialDriveWheelSpeeds(leftEncoder.getRate(), rightEncoder.getRate());
+  }
 
   // resets odometry to specified pose
-  // public void resetOdometry(Pose2d pose){
-  //   resetEncoders();
-  //   m_odometry.resetPosition(pose, getHeading());
-  // }
+  public void resetOdometry(Pose2d pose){
+    resetEncoders();
+    m_odometry.resetPosition(pose, getHeading());
+  }
   
   //drive robot with arcade drive
   public void ArcadeDrive(double speed, double rotation){
     differentialDrive.arcadeDrive(-speed, rotation);
   }
 
-  //directly controls left and right motors with voltages
-  // public void tankDriveVolts(double leftVolts, double rightVolts){
-  //   leftMotors.setVoltage(leftVolts);
-  //   rightMotors.setVoltage(rightVolts);
-  //   differentialDrive.feed();
-  // }
+  // directly controls left and right motors with voltages
+  public void tankDriveVolts(double leftVolts, double rightVolts){
+    leftMotors.setVoltage(leftVolts);
+    rightMotors.setVoltage(rightVolts);
+    differentialDrive.feed();
+  }
 
-  // public void resetEncoders() {
-  //   leftEncoder.reset();
-  //   rightEncoder.reset();
-  // }
+  public void resetEncoders() {
+    leftEncoder.reset();
+    rightEncoder.reset();
+  }
 
-  //returns average encoder readings
-  // public double getAverageEncoderDistance(){
-  //   return (leftEncoder.getDistance() + rightEncoder.getDistance()) /2.0;
+  // returns average encoder readings
+  public double getAverageEncoderDistance(){
+    return (leftEncoder.getDistance() + rightEncoder.getDistance()) /2.0;
 
-  // }
+  }
 
   // get left drivetrain encoder
-  // public Encoder getLeftEncoder(){
-  //   return leftEncoder;
-  // }
+  public Encoder getLeftEncoder(){
+    return leftEncoder;
+  }
 
-  //get right drivetrain encoder
-  // public Encoder getRightEncoder(){
-  //   return rightEncoder;
-  // }
+  // get right drivetrain encoder
+  public Encoder getRightEncoder(){
+    return rightEncoder;
+  }
 
   // sets max output of the drivetrain
-  // public void setMaxDriveOutput(double maxOutput){
-  //   differentialDrive.setMaxOutput(maxOutput);
-  // }
+  public void setMaxDriveOutput(double maxOutput){
+    differentialDrive.setMaxOutput(maxOutput);
+  }
 
   // resets gyro yaw value
 

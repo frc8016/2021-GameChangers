@@ -35,7 +35,7 @@ public class DriveTrain extends SubsystemBase {
   private final WPI_TalonSRX rightBackMotor = new WPI_TalonSRX(Constants.rightBackMotorPort);
 
   //REMEMBER TO REMOVE!!!//
-  private final Spark cetrifugeTestMotor = new Spark(2);
+  // private final Spark cetrifugeTestMotor = new Spark(2);
 
   private final SpeedControllerGroup leftMotors = new SpeedControllerGroup(leftFrontMotor, leftBackMotor);
   private final SpeedControllerGroup rightMotors = new SpeedControllerGroup(rightFrontMotor, rightBackMotor);

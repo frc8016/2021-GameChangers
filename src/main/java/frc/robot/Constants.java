@@ -46,22 +46,22 @@ public final class Constants {
 	public static final int button11 = 11;
 	public static final int button12 = 12;
 
-	public static final double pDriveStraight = 0.05;
-	public static final double iDriveStraight = 0.3;
+	public static final double pDriveStraight = 0.035;
+	public static final double iDriveStraight = 0.2;
 
 //intake
 	public static final int IntakeMotorPort = 0;
 	public static final int IntakeActuationMotorPort = 1;
 
-	public static final int IntakeUpperLimitSwitchPort = 0;
-	public static final int IntakeLowerLimitSwitchPort = 1;
+	public static final int IntakeUpperLimitSwitchPort = 4;
+	public static final int IntakeLowerLimitSwitchPort = 5;
 
 //shooter
 	public static final int flywheelMotorPort = 10;
-	public static final int hoodMotorPort = 1;
-	public static final int hoodHomeLimitSwitchPort = 1;
+	// public static final int hoodMotorPort = 1;
+	// public static final int hoodHomeLimitSwitchPort = 1;
 
-	public static final int [] hoodEncoderDIO = {4,5};
+	// public static final int [] hoodEncoderDIO = {4,5};
 
 	public static final int shooterIntakeMotorPort = 3;
 	public static final double shooterIntakeScalar = 0.5;
@@ -107,6 +107,12 @@ public final class Constants {
 	public static final  DifferentialDriveKinematics kDriveKinematics =
 	new DifferentialDriveKinematics(kTrackWidthMeters);
 	public static final double flywheelSpeedScalar = 0;
+
+	public static final int cenrifugeMotorPort = 2;
+	public static final double centrifugeScalar = -0.23;
+
+	public static final double IntakeExtendMotorScalar = 0.3;
+	public static final double IntakeRetractMotorScalar = 0.5;
 	
 
 	public final class TrajectoryConstants{

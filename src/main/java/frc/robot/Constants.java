@@ -114,14 +114,14 @@ public final class Constants {
 	public static final double IntakeExtendMotorScalar = 0.3;
 	public static final double IntakeRetractMotorScalar = 0.5;
 
-	public static final double targetHeight = 2.4384;
-	public static final double lenseHeight = .4445;
+	public static final double targetHeight = 2.438;
+	public static final double lenseHeight = 0.4445;
 	//in radians
 	public static final double lenseAngle = .4712;
 
-	public static final double dTDProportional = 0.05;
+	public static final double dTDProportional = .5;
 	public static final double dTDIntegral = 0;
-	public static final double shootingDistance = 0;
+	public static final double shootingDistance = 5;
 	
 
 	public final class TrajectoryConstants{

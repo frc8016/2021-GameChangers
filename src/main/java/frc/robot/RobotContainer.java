@@ -79,6 +79,7 @@ public class RobotContainer {
   private final JoystickButton Joy1 = new JoystickButton(driverController, Constants.button1);
   private final JoystickButton Joy9 = new JoystickButton(driverController, Constants.button9);
   private final JoystickButton Joy10 = new JoystickButton(driverController, Constants.button10);
+  private final JoystickButton Joy2 = new JoystickButton(driverController, Constants.button2);
 
   
 
@@ -116,6 +117,8 @@ public class RobotContainer {
     Joy6.whenPressed(m_StopCentrifuge);
     Joy3.whenPressed(m_ExtendIntake);
     Joy5.whenPressed(m_RetractIntake);
+    Joy2.whenHeld(m_DriveToDistance);
+    Joy2.whenReleased(m_arcadeDrive);
 
     //These may work. Keep as comments until tested.
     // XboxA.toggleWhenPressed(m_ExtendIntake, true);

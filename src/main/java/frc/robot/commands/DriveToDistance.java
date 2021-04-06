@@ -12,6 +12,7 @@ public class DriveToDistance extends CommandBase {
   /** Creates a new DriveToDistance. */
   public DriveToDistance(DriveTrain driveTrain) {
     m_driveTrain = driveTrain;
+    addRequirements(m_driveTrain);
     // Use addRequirements() here to declare subsystem dependencies.
   }
 

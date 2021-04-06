@@ -90,8 +90,8 @@ public class DriveTrain extends SubsystemBase {
 
     NetworkTable table = NetworkTableInstance.getDefault().getTable("limelight");
     tx = table.getEntry("tx").getDouble(0);
-    ty = table.getEntry("tx").getDouble(0);
-    area = table.getEntry("tx").getDouble(0);
+    ty = table.getEntry("ty").getDouble(0);
+    area = table.getEntry("ta").getDouble(0);
     SmartDashboard.putNumber("Distance from Power Port", this.getTargetDistance());
 
 

@@ -6,20 +6,23 @@ package frc.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
-
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
-// import edu.wpi.first.wpilibj.Encoder; // may not be the correct encoder import
-// import edu.wpi.first.wpilibj.geometry.Pose2d;
-// import edu.wpi.first.wpilibj.geometry.Rotation2d;
-// import edu.wpi.first.wpilibj.interfaces.Gyro;
-// import edu.wpi.first.wpilibj.kinematics.DifferentialDriveKinematics;
-// import edu.wpi.first.wpilibj.kinematics.DifferentialDriveOdometry;
-// import edu.wpi.first.wpilibj.kinematics.DifferentialDriveWheelSpeeds;
-// import com.ctre.phoenix.sensors.PigeonIMU;
+import edu.wpi.first.wpilibj.Encoder; // may not be the correct encoder import
+import edu.wpi.first.wpilibj.Spark;
+import edu.wpi.first.wpilibj.geometry.Pose2d;
+import edu.wpi.first.wpilibj.geometry.Rotation2d;
+import edu.wpi.first.wpilibj.interfaces.Gyro;
+import edu.wpi.first.wpilibj.kinematics.DifferentialDriveKinematics;
+import edu.wpi.first.wpilibj.kinematics.DifferentialDriveOdometry;
+import edu.wpi.first.wpilibj.kinematics.DifferentialDriveWheelSpeeds;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+
+import com.ctre.phoenix.sensors.PigeonIMU;
+import com.revrobotics.CANSparkMax;
+import com.revrobotics.CANSparkMaxLowLevel.MotorType;
+
 import frc.robot.Constants;
-
-
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
@@ -29,13 +32,20 @@ public class DriveTrain extends SubsystemBase {
   private final WPI_TalonSRX rightFrontMotor = new WPI_TalonSRX(Constants.rightFrontMotorPort);
   private final WPI_TalonSRX rightBackMotor = new WPI_TalonSRX(Constants.rightBackMotorPort);
 
-  private  SpeedControllerGroup leftMotors = new SpeedControllerGroup(leftFrontMotor, leftBackMotor);
-  private  SpeedControllerGroup rightMotors = new SpeedControllerGroup(rightFrontMotor, rightBackMotor);
+  //REMEMBER TO REMOVE!!!//
+  // private final Spark cetrifugeTestMotor = new Spark(2);
+
+  private final SpeedControllerGroup leftMotors = new SpeedControllerGroup(leftFrontMotor, leftBackMotor);
+  private final SpeedControllerGroup rightMotors = new SpeedControllerGroup(rightFrontMotor, rightBackMotor);
   
   private DifferentialDrive differentialDrive = new DifferentialDrive(leftMotors, rightMotors);
 
-  // private final Encoder leftEncoder = new Encoder(Constants.leftEncoderDIO[0],Constants.leftEncoderDIO[1]);
-  // private final Encoder rightEncoder = new Encoder(Constants.rightEncoderDIO[0], Constants.rightEncoderDIO[1]);
+  private final Encoder leftEncoder = new Encoder(Constants.leftEncoderDIO[0],Constants.leftEncoderDIO[1]);
+  private final Encoder rightEncoder = new Encoder(Constants.rightEncoderDIO[0], Constants.rightEncoderDIO[1]);
+
+  double integral = 0;
+  double dsError;
+
   
 //creates odometry class
   // private final DifferentialDriveOdometry m_odometry;
@@ -66,13 +76,16 @@ public class DriveTrain extends SubsystemBase {
     // rightEncoder.setDistancePerPulse(Constants.TrajectoryConstants.distancePerPulse);
     // resetEncoders();
 
-    // m_odometry = new DifferentialDriveOdometry(getHeading());
+    m_odometry = new DifferentialDriveOdometry(getHeading());
+
   }
 
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
-    // m_odometry.update(getHeading(), leftEncoder.getDistance(), rightEncoder.getDistance());
+    m_odometry.update(getHeading(), leftEncoder.getDistance(), rightEncoder.getDistance());
+    SmartDashboard.putNumber("Error", dsError);
+
 
   }
   //gets robots estimated pose --be sure to use consistent units
@@ -130,19 +143,33 @@ public class DriveTrain extends SubsystemBase {
   // }
 
   // resets gyro yaw value
-  // public void zeroHeading(){
-  //   pigeonIMU.setYaw(0);
-  // }
 
-  // public double getTurnRate(){
-  //   double[] xyz_dps = new double[3];
-  //   pigeonIMU.getRawGyro(xyz_dps);
-  //   //value may need to be negative?
-  //   return xyz_dps[2];
+  public void zeroHeading(){
+    pigeonIMU.setYaw(0);
+    pigeonIMU.setFusedHeading(0);
+  }
+
+  public double getTurnRate(){
+    double[] xyz_dps = new double[3];
+    pigeonIMU.getRawGyro(xyz_dps);
+    //value may need to be negative?
+    return xyz_dps[2];
+
     
-  // }
+  }
 
+  public void driveToZero(double speed){
+    double actualHeading = pigeonIMU.getFusedHeading();
+    double p = Constants.pDriveStraight;
+    double i = Constants.iDriveStraight;
+    double error = actualHeading; 
+    dsError = error;
+    integral += error*0.02;
+    double correction = error*p + integral*i;
 
+    this.ArcadeDrive(speed, -correction);
+    
+  }
 
 
 

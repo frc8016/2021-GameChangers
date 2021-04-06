@@ -5,6 +5,11 @@
 package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+
+import com.revrobotics.CANEncoder;
+import com.revrobotics.CANSparkMax;
+import com.revrobotics.CANSparkMaxLowLevel.MotorType;
+
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Spark;
 import frc.robot.Constants;
@@ -14,15 +19,13 @@ import edu.wpi.first.wpilibj.Encoder; // may not be the correct encoder import
 
 public class Shooter extends SubsystemBase {
   /** Creates a new Shooter. */
-  private final Spark flywheelMotor = new Spark(Constants.flywheelMotorPort);
+  private final CANSparkMax flywheelMotor = new CANSparkMax(Constants.flywheelMotorPort, MotorType.kBrushless);
 
-  private final Spark hoodMotor = new Spark(Constants.hoodMotorPort);
+  // private final Spark hoodMotor = new Spark(Constants.hoodMotorPort);
 
-  private final DigitalInput hoodHomeLimitSwitch = new DigitalInput(Constants.hoodHomeLimitSwitchPort);
+  // private final DigitalInput hoodHomeLimitSwitch = new DigitalInput(Constants.hoodHomeLimitSwitchPort);
 
-  private final Encoder hoodEncoder = new Encoder(Constants.hoodEncoderDIO[0],Constants.hoodEncoderDIO[1]);
-
-
+  private final CANEncoder hoodEncoder = flywheelMotor.getEncoder();
 
 
   //use these methods to control the flywheel
@@ -34,16 +37,20 @@ public class Shooter extends SubsystemBase {
     flywheelMotor.set(0);
   }
 
-  public void homeHood() {
-    if (hoodHomeLimitSwitch.get()) {
-      hoodMotor.set(0);
-      hoodEncoder.reset();
-    }
-    else {
-      hoodMotor.set(Constants.hoodHomingSpeedScalar);
-    }
-
+  public void setFlywheelMotor() {
+      flywheelMotor.set(Constants.flywheelMotorSpeedScalar);
   }
+
+  // public void homeHood() {
+  //   if (hoodHomeLimitSwitch.get()) {
+  //     hoodMotor.set(0);
+  //     hoodEncoder.setPosition(0.0);
+  //   }
+  //   else {
+  //     hoodMotor.set(Constants.hoodHomingSpeedScalar);
+  //   }
+
+  // }
 
 
   public Shooter() {}

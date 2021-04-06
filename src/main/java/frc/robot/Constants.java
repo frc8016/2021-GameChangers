@@ -32,6 +32,22 @@ public final class Constants {
 	public static final int joyXAxis = 0;
 	public static final int joyYAxis = 1;
 	public static final int joyZAxis = 2;
+	public static final int joyPaddleAxis = 3;
+	public static final int button1 = 1;
+	public static final int button2 = 2;
+	public static final int button3 = 3;
+	public static final int button4 = 4;
+	public static final int button5 = 5;
+	public static final int button6 = 6;
+	public static final int button7 = 7;
+	public static final int button8 = 8;
+	public static final int button9 = 9;
+	public static final int button10 = 10;
+	public static final int button11 = 11;
+	public static final int button12 = 12;
+
+	public static final double pDriveStraight = 0.035;
+	public static final double iDriveStraight = 0.2;
 
 //intake
 	public static final int IntakeMotorPort = 0;
@@ -41,11 +57,14 @@ public final class Constants {
 	public static final int IntakeLowerLimitSwitchPort = 5;
 
 //shooter
-	public static final int flywheelMotorPort = 0;
-	public static final int hoodMotorPort = 1;
-	public static final int hoodHomeLimitSwitchPort = 1;
+	public static final int flywheelMotorPort = 10;
+	// public static final int hoodMotorPort = 1;
+	// public static final int hoodHomeLimitSwitchPort = 1;
 
-	public static final int [] hoodEncoderDIO = {6,7};
+	// public static final int [] hoodEncoderDIO = {4,5};
+
+	public static final int shooterIntakeMotorPort = 3;
+	public static final double shooterIntakeScalar = 0.5;
 
 
 //scalars
@@ -54,7 +73,7 @@ public final class Constants {
 	public static final double IntakeExtendMotorScalar = 0.3;
 	public static final double IntakeRetractMotorScalar = 0.5;
 	public static final double hoodHomingSpeedScalar = 0.25;
-	public static final double flywheelMotorSpeedScalar = 0.75;
+	public static final double flywheelMotorSpeedScalar = 1;
 
 
 	/**The value of IntakeActuationMotorScalar was chosen arbotrarily
@@ -89,6 +108,13 @@ public final class Constants {
 	public static final double kTrackWidthMeters = 0;
 	public static final  DifferentialDriveKinematics kDriveKinematics =
 	new DifferentialDriveKinematics(kTrackWidthMeters);
+	public static final double flywheelSpeedScalar = 0;
+
+	public static final int cenrifugeMotorPort = 2;
+	public static final double centrifugeScalar = -0.23;
+
+	public static final double IntakeExtendMotorScalar = 0.3;
+	public static final double IntakeRetractMotorScalar = 0.5;
 	
 
 	public final class TrajectoryConstants{

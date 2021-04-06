@@ -5,7 +5,7 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.GenericHID;
-import edu.wpi.first.wpilibj.Joystick;
+// import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.commands.ArcadeDrive;
 import frc.robot.commands.DriveStraight;
@@ -17,6 +17,7 @@ import frc.robot.commands.StopShooterIntake;
 import frc.robot.commands.spinCentrifuge;
 import frc.robot.commands.ExtendIntake;
 import frc.robot.commands.RetractIntake;
+
 // import frc.robot.commands.UnjamIntake;
 // import frc.robot.commands.exampleRamseteCommand;
 import frc.robot.subsystems.DriveTrain;
@@ -24,6 +25,7 @@ import frc.robot.subsystems.Intake;
 import frc.robot.subsystems.Shooter;
 import frc.robot.subsystems.ShooterIntake;
 import frc.robot.subsystems.centrifuge;
+
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 
@@ -59,6 +61,7 @@ public class RobotContainer {
   private final spinCentrifuge m_SpinCentrifuge = new spinCentrifuge(m_Centrifuge);
   private final StopCentrifuge m_StopCentrifuge = new StopCentrifuge(m_Centrifuge);
 
+
   //IO
   private final Joystick driverController = new Joystick(Constants.joystickPort);
   private final XboxController operatorController = new XboxController(Constants.XboxControllerPort);
@@ -74,7 +77,6 @@ public class RobotContainer {
   private final JoystickButton Joy1 = new JoystickButton(driverController, Constants.button1);
   private final JoystickButton Joy9 = new JoystickButton(driverController, Constants.button9);
   private final JoystickButton Joy10 = new JoystickButton(driverController, Constants.button10);
-
 
   
 
@@ -98,6 +100,7 @@ public class RobotContainer {
    */
   private void configureButtonBindings() {
     //these definitely work
+
     // XboxA.whenPressed(m_ExtendIntake);
     // XboxB.whenPressed(m_RetractIntake);
     // XboxY.whenPressed(m_UnjamIntake);

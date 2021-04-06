@@ -114,9 +114,10 @@ public final class Constants {
 	public static final double IntakeExtendMotorScalar = 0.3;
 	public static final double IntakeRetractMotorScalar = 0.5;
 
-	public static final int targetHeight = 0;
-	public static final int lenseHeight = 0;
-	public static final double lenseAngle = 0;
+	public static final double targetHeight = 2.4384;
+	public static final double lenseHeight = .4445;
+	//in radians
+	public static final double lenseAngle = .4712;
 
 	public static final double dTDProportional = 0.05;
 	public static final double dTDIntegral = 0;

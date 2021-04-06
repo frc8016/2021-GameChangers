@@ -92,6 +92,7 @@ public class DriveTrain extends SubsystemBase {
     tx = table.getEntry("tx").getDouble(0);
     ty = table.getEntry("tx").getDouble(0);
     area = table.getEntry("tx").getDouble(0);
+    SmartDashboard.putNumber("Distance from Power Port", this.getTargetDistance());
 
 
   }
@@ -178,8 +179,9 @@ public class DriveTrain extends SubsystemBase {
     
   }
   public double getTargetDistance(){
+    double a2 = Math.toRadians(ty);
     double d = (Constants.targetHeight -  Constants.lenseHeight)/
-    Math.tan(ty + Constants.lenseAngle);
+    Math.tan(a2 + Constants.lenseAngle);
     return d;
   }
   

@@ -9,6 +9,7 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.commands.ArcadeDrive;
 import frc.robot.commands.DriveStraight;
+import frc.robot.commands.DriveToDistance;
 import frc.robot.commands.ManualShooterSpeed;
 import frc.robot.commands.RunShooterIntake;
 import frc.robot.commands.StopCentrifuge;
@@ -53,6 +54,7 @@ public class RobotContainer {
   private final RetractIntake m_RetractIntake = new RetractIntake(m_Intake);
   // private final UnjamIntake m_UnjamIntake = new UnjamIntake(m_Intake);
   // private final exampleRamseteCommand m_ExampleRamseteCommand = new exampleRamseteCommand(m_driveTrain);
+  private final DriveToDistance m_DriveToDistance = new DriveToDistance(m_driveTrain);
   private final DriveStraight m_DriveStraight = new DriveStraight(m_driveTrain);
   private final ManualShooterSpeed m_ManualShooterSpeed = new ManualShooterSpeed(m_Shooter);
   private final RunShooterIntake m_RunShooterIntake = new RunShooterIntake(m_ShooterIntake);
@@ -77,6 +79,7 @@ public class RobotContainer {
   private final JoystickButton Joy1 = new JoystickButton(driverController, Constants.button1);
   private final JoystickButton Joy9 = new JoystickButton(driverController, Constants.button9);
   private final JoystickButton Joy10 = new JoystickButton(driverController, Constants.button10);
+  private final JoystickButton Joy2 = new JoystickButton(driverController, Constants.button2);
 
   
 
@@ -114,6 +117,8 @@ public class RobotContainer {
     Joy6.whenPressed(m_StopCentrifuge);
     Joy3.whenPressed(m_ExtendIntake);
     Joy5.whenPressed(m_RetractIntake);
+    Joy2.whenHeld(m_DriveToDistance);
+    Joy2.whenReleased(m_arcadeDrive);
 
     //These may work. Keep as comments until tested.
     // XboxA.toggleWhenPressed(m_ExtendIntake, true);

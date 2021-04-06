@@ -113,6 +113,15 @@ public final class Constants {
 
 	public static final double IntakeExtendMotorScalar = 0.3;
 	public static final double IntakeRetractMotorScalar = 0.5;
+
+	public static final double targetHeight = 2.438;
+	public static final double lenseHeight = 0.4445;
+	//in radians
+	public static final double lenseAngle = .4712;
+
+	public static final double dTDProportional = .5;
+	public static final double dTDIntegral = 0;
+	public static final double shootingDistance = 5;
 	
 
 	public final class TrajectoryConstants{
@@ -132,6 +141,17 @@ public final class Constants {
 		
 
 		
+
+	}
+
+	public final class ProjectileConstants{
+		public static final double g = -9.81;
+		public static final double y = 0;
+		//height of camera
+		public static final double yInitial = 0;
+		public static final double tanTheta_d = 0;
+		//cosine of shooter angle squared
+		public static final double cosThetaSqrd = 0;
 
 	}
 }

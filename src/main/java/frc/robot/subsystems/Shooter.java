@@ -40,6 +40,9 @@ public class Shooter extends SubsystemBase {
 
   double speed = 0;
 
+  double previousError = 0;
+  double integral = 0;
+
 
   //use these methods to control the flywheel
   public void runFlywheelMotorForward() {
@@ -105,7 +108,10 @@ public class Shooter extends SubsystemBase {
 
   public void manualPID(){
     double error = Constants.flyWheelRPM - flywheelEncoder.getVelocity();
-    flywheelMotor.set(error * Constants.pFlywheel);
+    integral += error*.02;
+    double derivative = (error -previousError) / .02;
+    flywheelMotor.set(error * Constants.pFlywheel+ integral * Constants.iFlywheel + derivative * Constants.dFlywheel);
+    previousError = error;
 
   }
 

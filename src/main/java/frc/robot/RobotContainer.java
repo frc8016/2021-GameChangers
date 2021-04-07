@@ -90,7 +90,7 @@ public class RobotContainer {
     configureButtonBindings();
     m_driveTrain.setDefaultCommand(m_arcadeDrive);
     // m_Intake.setDefaultCommand(m_RetractIntake);
-    m_Shooter.setDefaultCommand(m_StopShooter);
+    m_Shooter.setDefaultCommand(m_ManualShooterSpeed);
     m_ShooterIntake.setDefaultCommand(m_StopShooterIntake);
   }
 

@@ -29,7 +29,7 @@ public class DriveStraight extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-	  m_driveTrain.driveToZero(driverStick.getRawAxis(Constants.joyYAxis));
+	  m_driveTrain.driveToZero(m_driveTrain.driveToDistance(Constants.shootingDistance));
   }
 
   // Called once the command ends or is interrupted.

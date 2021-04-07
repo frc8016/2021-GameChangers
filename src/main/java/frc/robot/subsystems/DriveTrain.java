@@ -187,11 +187,11 @@ public class DriveTrain extends SubsystemBase {
   
 
 
-  public void driveToDistance(double desiredDistance){
+  public double driveToDistance(double desiredDistance){
     double error = this.getTargetDistance() - desiredDistance;
     dTDIntegral += error* .02;
     double output = error* Constants.dTDProportional + dTDIntegral * Constants.dTDIntegral;
-    this.ArcadeDrive(output, 0);
+    return output;
 
 
 

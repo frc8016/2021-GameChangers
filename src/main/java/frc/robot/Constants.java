@@ -114,6 +114,15 @@ public final class Constants {
 	public static final double IntakeExtendMotorScalar = 0.3;
 	public static final double IntakeRetractMotorScalar = 0.5;
 
+	public static final double pFlywheel = 2e-4;
+	public static final double iFlywheel = 0;
+	public static final double dFlywheel = 0;
+	public static final double ffFlywheel = 4.81e-6;
+	public static final double flyWheelRPM = 5000;
+	public static final double izFlywheel = 0.000015;
+	public static final double maxFlywheel = 1;
+	public static final double minFlywheel = -1;
+
 	public static final double targetHeight = 2.438;
 	public static final double lenseHeight = 0.4445;
 	//in radians

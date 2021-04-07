@@ -46,10 +46,14 @@ public class DriveTrain extends SubsystemBase {
   double dsError;
   double dTDIntegral;
 
-  double kp = 0.1;
-  double min_command = 0.05;
+  double kp = 0.028;
+  double min_command = 0.027;
 
   double tx, ty, area;
+
+  double limelightCorrection = 0;
+
+  double d2dError;
 
   
 // creates odometry class
@@ -96,6 +100,9 @@ public class DriveTrain extends SubsystemBase {
     ty = table.getEntry("ty").getDouble(0);
     area = table.getEntry("ta").getDouble(0);
     SmartDashboard.putNumber("Distance from Power Port", this.getTargetDistance());
+    SmartDashboard.putNumber("Align Error", limelightCorrection);
+    SmartDashboard.putNumber("Drive Error", d2dError);
+    SmartDashboard.putNumber("PowerPort Angle", tx);
 
 
   }
@@ -184,15 +191,15 @@ public class DriveTrain extends SubsystemBase {
 
 public void driveToZero_Limelight(double speed){
   double error = tx;
-  double correction = 0;
+  limelightCorrection = 0;
   if(tx > 1.0){
-    correction = kp*error + min_command;
+    limelightCorrection = kp*error + min_command;
   } 
   else if(tx < 1.0){
-    correction = kp*error - min_command;
+    limelightCorrection = kp*error - min_command;
 
   }
-  ArcadeDrive(speed, -correction);
+  ArcadeDrive(speed, limelightCorrection);
 
 }
 
@@ -206,9 +213,9 @@ public void driveToZero_Limelight(double speed){
 
 
   public double driveToDistance(double desiredDistance){
-    double error = this.getTargetDistance() - desiredDistance;
-    dTDIntegral += error* .02;
-    double output = error* Constants.dTDProportional + dTDIntegral * Constants.dTDIntegral;
+    d2dError = this.getTargetDistance() - desiredDistance;
+    dTDIntegral += d2dError* .02;
+    double output = d2dError* Constants.dTDProportional + dTDIntegral * Constants.dTDIntegral;
     return output;
 
 

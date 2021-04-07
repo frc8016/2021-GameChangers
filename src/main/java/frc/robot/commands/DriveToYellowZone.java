@@ -4,34 +4,39 @@
 
 package frc.robot.commands;
 
+import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants;
 import frc.robot.subsystems.DriveTrain;
-public class DriveToDistance extends CommandBase {
+
+
+public class DriveToYellowZone extends CommandBase {
+	//Joystick driverStick = new Joystick(Constants.joystickPort);
+  /** Creates a new DriveStraight. */
   DriveTrain m_driveTrain;
-  /** Creates a new DriveToDistance. */
-  public DriveToDistance(DriveTrain driveTrain) {
-    m_driveTrain = driveTrain;
-    addRequirements(m_driveTrain);
-    // Use addRequirements() here to declare subsystem dependencies.
+  public DriveToYellowZone(DriveTrain driveTrain) {
+	// Use addRequirements() here to declare subsystem dependencies.
+	m_driveTrain = driveTrain;
+	addRequirements(m_driveTrain);
   }
 
   // Called when the command is initially scheduled.
   @Override
-  public void initialize() {}
+  public void initialize() {
+   //m_driveTrain.zeroHeading(); 
+  }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    //Constants value is a temporary filler for network tables value
-    m_driveTrain.driveToDistance(Constants.greenZoneShootingDistance);
+	  m_driveTrain.driveToZero_Limelight(m_driveTrain.driveToDistance(Constants.yellowZoneShootingDistance));
   }
-  
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    m_driveTrain.ArcadeDrive(0, 0);
+	m_driveTrain.ArcadeDrive(0, 0);
+
   }
 
   // Returns true when the command should end.
@@ -40,3 +45,4 @@ public class DriveToDistance extends CommandBase {
     return false;
   }
 }
+

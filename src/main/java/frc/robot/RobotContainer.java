@@ -10,6 +10,11 @@ import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.commands.ArcadeDrive;
 import frc.robot.commands.DriveStraight;
 import frc.robot.commands.DriveToDistance;
+import frc.robot.commands.DriveToGreenZone;
+import frc.robot.commands.DriveToYellowZone;
+import frc.robot.commands.DriveToBlueZone;
+import frc.robot.commands.DriveToReintroductionZone;
+
 import frc.robot.commands.ManualShooterSpeed;
 import frc.robot.commands.RunShooterIntake;
 import frc.robot.commands.StopCentrifuge;
@@ -56,6 +61,10 @@ public class RobotContainer {
   // private final exampleRamseteCommand m_ExampleRamseteCommand = new exampleRamseteCommand(m_driveTrain);
   private final DriveToDistance m_DriveToDistance = new DriveToDistance(m_driveTrain);
   private final DriveStraight m_DriveStraight = new DriveStraight(m_driveTrain);
+  private final DriveToReintroductionZone m_DriveToReintroductionZone = new DriveToReintroductionZone(m_driveTrain);
+  private final DriveToBlueZone m_DriveToBlueZone = new DriveToBlueZone(m_driveTrain);
+  private final DriveToYellowZone m_DriveToYellowZone = new DriveToYellowZone(m_driveTrain);
+  private final DriveToGreenZone m_DriveToGreenZone = new DriveToGreenZone(m_driveTrain);
   private final ManualShooterSpeed m_ManualShooterSpeed = new ManualShooterSpeed(m_Shooter);
   private final RunShooterIntake m_RunShooterIntake = new RunShooterIntake(m_ShooterIntake);
   private final StopShooterIntake m_StopShooterIntake = new StopShooterIntake(m_ShooterIntake);
@@ -70,6 +79,7 @@ public class RobotContainer {
   private final JoystickButton XboxA = new JoystickButton(operatorController, Constants.ButtonA);
   private final JoystickButton XboxB = new JoystickButton(operatorController, Constants.ButtonB);
   private final JoystickButton XboxY = new JoystickButton(operatorController, Constants.ButtonY);
+  private final JoystickButton XboxX = new JoystickButton(operatorController, Constants.ButtonX);
   private final JoystickButton Joy3 = new JoystickButton(driverController, Constants.button3);
   private final JoystickButton Joy4 = new JoystickButton(driverController, Constants.button4);
   private final JoystickButton Joy5 = new JoystickButton(driverController, Constants.button5);
@@ -124,7 +134,10 @@ public class RobotContainer {
     // XboxA.toggleWhenPressed(m_ExtendIntake, true);
     // XboxB.toggleWhenPressed(m_RetractIntake, true);
     // XboxY.toggleWhenPressed(m_UnjamIntake, true);
-
+    XboxA.whenPressed(m_DriveToGreenZone);
+    XboxX.whenPressed(m_DriveToBlueZone);
+    XboxY.whenPressed(m_DriveToYellowZone);
+    XboxB.whenPressed(m_DriveToReintroductionZone);
   }
 
   /**

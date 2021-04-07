@@ -130,7 +130,12 @@ public final class Constants {
 
 	public static final double dTDProportional = .5;
 	public static final double dTDIntegral = 0;
-	public static final double shootingDistance = 2; //meters
+	
+	public static final double greenZoneShootingDistance = 1.5; //meters
+	public static final double yellowZoneShootingDistance = 2.5; //meters
+	public static final double blueZoneShootingDistance = 4.1; //meters
+	public static final double reintroductionZoneDistance = 7.1; //meters
+
 	
 
 	public final class TrajectoryConstants{

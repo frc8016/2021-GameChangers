@@ -52,6 +52,7 @@ public class DriveTrain extends SubsystemBase {
   double tx, ty, area;
 
   double limelightCorrection = 0;
+  double limelightCorrection_integral = 0;
 
   double d2dError;
 
@@ -199,7 +200,10 @@ public void driveToZero_Limelight(double speed){
     limelightCorrection = kp*error - min_command;
 
   }
-  ArcadeDrive(speed, limelightCorrection);
+  double finalCorrection = (limelightCorrection + limelightCorrection_integral * Constants.i_LimelightGain);
+  limelightCorrection_integral += error*.02;
+
+  ArcadeDrive(speed, finalCorrection);
 
 }
 

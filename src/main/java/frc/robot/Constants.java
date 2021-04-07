@@ -135,6 +135,7 @@ public final class Constants {
 	public static final double yellowZoneShootingDistance = 2.5; //meters
 	public static final double blueZoneShootingDistance = 4.1; //meters
 	public static final double reintroductionZoneDistance = 7.1; //meters
+	public static final double i_LimelightGain = 0.002;
 
 	
 

@@ -118,7 +118,7 @@ public final class Constants {
 	public static final double iFlywheel = 4e-4;
 	public static final double dFlywheel = 4e-4;
 	public static final double ffFlywheel = 4.81e-6;
-	public static final double flyWheelRPM = 5000;
+	// public static final double flyWheelRPM = 5000;
 	public static final double izFlywheel = 0.000015;
 	public static final double maxFlywheel = 1;
 	public static final double minFlywheel = -1;
@@ -131,11 +131,19 @@ public final class Constants {
 	public static final double dTDProportional = .5;
 	public static final double dTDIntegral = 0;
 	
-	public static final double greenZoneShootingDistance = 1.5; //meters
+	public static final double greenZoneShootingDistance = 1.3; //meters
 	public static final double yellowZoneShootingDistance = 2.5; //meters
 	public static final double blueZoneShootingDistance = 4.1; //meters
 	public static final double reintroductionZoneDistance = 7.1; //meters
+
+	public static final int greenZoneShooterRPM = 5700;
+	public static final int yellowZoneShooterRPM = 5000;
+	public static final int blueZoneShooterRPM = 5325;
+
+
 	public static final double i_LimelightGain = 0.002;
+
+
 
 	
 

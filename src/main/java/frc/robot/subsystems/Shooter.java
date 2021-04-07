@@ -69,9 +69,9 @@ public class Shooter extends SubsystemBase {
 
     return java.lang.Math.sqrt(numerator/denominator);
   }
-  public void RunFlywheelPID(){
-    pidConroller.setReference(Constants.flyWheelRPM, ControlType.kVelocity);
-  }
+  // public void RunFlywheelPID(){
+  //   pidConroller.setReference(Constants.flyWheelRPM, ControlType.kVelocity);
+  // }
 
   // public void homeHood() {
   //   if (hoodHomeLimitSwitch.get()) {
@@ -102,12 +102,11 @@ public class Shooter extends SubsystemBase {
     ty = table.getEntry("ty").getDouble(0);
     area = table.getEntry("ta").getDouble(0);
     SmartDashboard.putNumber("Shooter RPM", flywheelEncoder.getVelocity());
-    SmartDashboard.putNumber("Shooter Error", Constants.flyWheelRPM - flywheelEncoder.getVelocity());
     // This method will be called once per scheduler run
   }
 
-  public void manualPID(){
-    double error = Constants.flyWheelRPM - flywheelEncoder.getVelocity();
+  public void manualPID(int targetRPM){
+    double error = targetRPM - flywheelEncoder.getVelocity();
     integral += error*.02;
     double derivative = (error -previousError) / .02;
     flywheelMotor.set(error * Constants.pFlywheel+ integral * Constants.iFlywheel + derivative * Constants.dFlywheel);

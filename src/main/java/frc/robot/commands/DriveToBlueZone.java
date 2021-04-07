@@ -8,16 +8,20 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants;
 import frc.robot.subsystems.DriveTrain;
+import frc.robot.subsystems.Shooter;
 
 
 public class DriveToBlueZone extends CommandBase {
 	//Joystick driverStick = new Joystick(Constants.joystickPort);
   /** Creates a new DriveStraight. */
   DriveTrain m_driveTrain;
-  public DriveToBlueZone(DriveTrain driveTrain) {
+  Shooter m_Shooter;
+  public DriveToBlueZone(DriveTrain driveTrain, Shooter shooter) {
 	// Use addRequirements() here to declare subsystem dependencies.
-	m_driveTrain = driveTrain;
-	addRequirements(m_driveTrain);
+  m_driveTrain = driveTrain;
+  m_Shooter = shooter;
+  addRequirements(m_driveTrain);
+  addRequirements(m_Shooter);
   }
 
   // Called when the command is initially scheduled.
@@ -29,7 +33,8 @@ public class DriveToBlueZone extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-	  m_driveTrain.driveToZero_Limelight(m_driveTrain.driveToDistance(Constants.blueZoneShootingDistance));
+    m_driveTrain.driveToZero_Limelight(m_driveTrain.driveToDistance(Constants.blueZoneShootingDistance));
+    m_Shooter.manualPID(Constants.blueZoneShooterRPM);
   }
 
   // Called once the command ends or is interrupted.

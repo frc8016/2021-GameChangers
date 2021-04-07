@@ -63,9 +63,9 @@ public class RobotContainer {
   private final DriveToDistance m_DriveToDistance = new DriveToDistance(m_driveTrain);
   private final DriveStraight m_DriveStraight = new DriveStraight(m_driveTrain);
   private final DriveToReintroductionZone m_DriveToReintroductionZone = new DriveToReintroductionZone(m_driveTrain);
-  private final DriveToBlueZone m_DriveToBlueZone = new DriveToBlueZone(m_driveTrain);
-  private final DriveToYellowZone m_DriveToYellowZone = new DriveToYellowZone(m_driveTrain);
-  private final DriveToGreenZone m_DriveToGreenZone = new DriveToGreenZone(m_driveTrain);
+  private final DriveToBlueZone m_DriveToBlueZone = new DriveToBlueZone(m_driveTrain, m_Shooter);
+  private final DriveToYellowZone m_DriveToYellowZone = new DriveToYellowZone(m_driveTrain, m_Shooter);
+  private final DriveToGreenZone m_DriveToGreenZone = new DriveToGreenZone(m_driveTrain, m_Shooter);
   private final ManualShooterSpeed m_ManualShooterSpeed = new ManualShooterSpeed(m_Shooter);
   private final RunShooterIntake m_RunShooterIntake = new RunShooterIntake(m_ShooterIntake);
   private final StopShooterIntake m_StopShooterIntake = new StopShooterIntake(m_ShooterIntake);
@@ -107,7 +107,7 @@ public class RobotContainer {
     // m_Intake.setDefaultCommand(m_RetractIntake);
     m_Shooter.setDefaultCommand(m_StopShooter);
     m_ShooterIntake.setDefaultCommand(m_StopShooterIntake);
-    m_Centrifuge.setDefaultCommand(m_SpinCentrifuge);
+    m_Centrifuge.setDefaultCommand(m_StopCentrifuge);
   }
 
 
@@ -141,7 +141,7 @@ public class RobotContainer {
     XboxA.whenPressed(m_DriveToGreenZone);
     XboxX.whenPressed(m_DriveToBlueZone);
     XboxY.whenPressed(m_DriveToYellowZone);
-    XboxB.whenPressed(m_DriveToReintroductionZone);
+    // XboxB.whenPressed(m_DriveToReintroductionZone);
     XboxRButton.whileHeld(m_StopCentrifuge);
     XboxLButton.whileHeld(m_UnjamCentrifuge);
     xboxMButton.whenPressed(m_arcadeDrive);

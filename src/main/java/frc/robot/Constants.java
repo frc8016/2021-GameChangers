@@ -64,7 +64,7 @@ public final class Constants {
 	// public static final int [] hoodEncoderDIO = {4,5};
 
 	public static final int shooterIntakeMotorPort = 3;
-	public static final double shooterIntakeScalar = 0.5;
+	public static final double shooterIntakeScalar = 0.75;
 
 
 //scalars
@@ -109,14 +109,14 @@ public final class Constants {
 	public static final double flywheelSpeedScalar = 0;
 
 	public static final int cenrifugeMotorPort = 2;
-	public static final double centrifugeScalar = -0.23;
+	public static final double centrifugeScalar = -0.25;
 
 	public static final double IntakeExtendMotorScalar = 0.3;
 	public static final double IntakeRetractMotorScalar = 0.5;
 
-	public static final double pFlywheel = 2e-4;
-	public static final double iFlywheel = 0;
-	public static final double dFlywheel = 0;
+	public static final double pFlywheel = 2e-3;
+	public static final double iFlywheel = 4e-4;
+	public static final double dFlywheel = 4e-4;
 	public static final double ffFlywheel = 4.81e-6;
 	public static final double flyWheelRPM = 5000;
 	public static final double izFlywheel = 0.000015;

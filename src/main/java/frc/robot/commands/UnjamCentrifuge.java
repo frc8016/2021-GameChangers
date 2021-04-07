@@ -4,21 +4,16 @@
 
 package frc.robot.commands;
 
-import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.Constants;
-import frc.robot.subsystems.Shooter;
-import com.revrobotics.CANEncoder;
+import frc.robot.subsystems.centrifuge;
 
-
-public class ManualShooterSpeed extends CommandBase {
-  Shooter m_Shooter;
-  Joystick joystick = new Joystick(Constants.joystickPort);
-  /** Creates a new ManualShooterSpeed. */
-  public ManualShooterSpeed(Shooter shooter) {
-    m_Shooter = shooter;
+public class UnjamCentrifuge extends CommandBase {
+  centrifuge m_Centrifuge;
+  /** Creates a new unjamCentrifuge. */
+  public UnjamCentrifuge(centrifuge centrifuge) {
     // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(m_Shooter);
+    m_Centrifuge = centrifuge;
+    addRequirements(m_Centrifuge);
   }
 
   // Called when the command is initially scheduled.
@@ -28,8 +23,7 @@ public class ManualShooterSpeed extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    m_Shooter.setShooterRPM(joystick.getRawAxis(Constants.joyPaddleAxis));  
-    // m_Shooter.manualPID();
+    m_Centrifuge.unjamCentrifuge();
   }
 
   // Called once the command ends or is interrupted.

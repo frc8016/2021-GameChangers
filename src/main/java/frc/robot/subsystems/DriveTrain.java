@@ -46,7 +46,7 @@ public class DriveTrain extends SubsystemBase {
   double dsError;
   double dTDIntegral;
 
-  double kp = 0.028;
+  double kp = 0.03;
   double min_command = 0.027;
 
   double tx, ty, area;

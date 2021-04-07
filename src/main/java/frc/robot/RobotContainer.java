@@ -20,6 +20,7 @@ import frc.robot.commands.RunShooterIntake;
 import frc.robot.commands.StopCentrifuge;
 import frc.robot.commands.StopShooter;
 import frc.robot.commands.StopShooterIntake;
+import frc.robot.commands.UnjamCentrifuge;
 import frc.robot.commands.spinCentrifuge;
 import frc.robot.commands.ExtendIntake;
 import frc.robot.commands.RetractIntake;
@@ -71,6 +72,7 @@ public class RobotContainer {
   private final StopShooter m_StopShooter = new StopShooter(m_Shooter);
   private final spinCentrifuge m_SpinCentrifuge = new spinCentrifuge(m_Centrifuge);
   private final StopCentrifuge m_StopCentrifuge = new StopCentrifuge(m_Centrifuge);
+  private final UnjamCentrifuge m_UnjamCentrifuge = new UnjamCentrifuge(m_Centrifuge);
 
 
   //IO
@@ -80,6 +82,9 @@ public class RobotContainer {
   private final JoystickButton XboxB = new JoystickButton(operatorController, Constants.ButtonB);
   private final JoystickButton XboxY = new JoystickButton(operatorController, Constants.ButtonY);
   private final JoystickButton XboxX = new JoystickButton(operatorController, Constants.ButtonX);
+  private final JoystickButton XboxLButton = new JoystickButton(operatorController, Constants.ButtonLeft);
+  private final JoystickButton XboxRButton = new JoystickButton(operatorController, Constants.ButtonRight);
+  private final JoystickButton xboxMButton = new JoystickButton(operatorController, Constants.ButtonMenu);
   private final JoystickButton Joy3 = new JoystickButton(driverController, Constants.button3);
   private final JoystickButton Joy4 = new JoystickButton(driverController, Constants.button4);
   private final JoystickButton Joy5 = new JoystickButton(driverController, Constants.button5);
@@ -100,8 +105,9 @@ public class RobotContainer {
     configureButtonBindings();
     m_driveTrain.setDefaultCommand(m_arcadeDrive);
     // m_Intake.setDefaultCommand(m_RetractIntake);
-    m_Shooter.setDefaultCommand(m_ManualShooterSpeed);
+    m_Shooter.setDefaultCommand(m_StopShooter);
     m_ShooterIntake.setDefaultCommand(m_StopShooterIntake);
+    m_Centrifuge.setDefaultCommand(m_SpinCentrifuge);
   }
 
 
@@ -123,8 +129,6 @@ public class RobotContainer {
     Joy10.whenPressed(m_ManualShooterSpeed);
     Joy1.whenHeld(m_RunShooterIntake);
     Joy1.whenReleased(m_StopShooterIntake);
-    Joy4.whenPressed(m_SpinCentrifuge);
-    Joy6.whenPressed(m_StopCentrifuge);
     Joy3.whenPressed(m_ExtendIntake);
     Joy5.whenPressed(m_RetractIntake);
    // Joy2.whenHeld(m_DriveToDistance);
@@ -138,6 +142,9 @@ public class RobotContainer {
     XboxX.whenPressed(m_DriveToBlueZone);
     XboxY.whenPressed(m_DriveToYellowZone);
     XboxB.whenPressed(m_DriveToReintroductionZone);
+    XboxRButton.whileHeld(m_StopCentrifuge);
+    XboxLButton.whileHeld(m_UnjamCentrifuge);
+    xboxMButton.whenPressed(m_arcadeDrive);
   }
 
   /**

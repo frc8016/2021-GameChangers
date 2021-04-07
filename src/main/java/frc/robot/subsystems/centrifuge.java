@@ -23,6 +23,10 @@ public class centrifuge extends SubsystemBase {
     spark.set(0);
   }
 
+  public void unjamCentrifuge() {
+    spark.set(-Constants.centrifugeScalar);
+  }
+
   @Override
   public void periodic() {
     // This method will be called once per scheduler run

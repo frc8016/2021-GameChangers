@@ -115,16 +115,14 @@ public class Shooter extends SubsystemBase {
 
   }
 
-  public void pidKnockoff(){
-    if(flywheelEncoder.getVelocity() < Constants.flyWheelRPM){
-      speed += 0.005;
+  public void flywheelRampUp(){
+      speed += 0.05;
       flywheelMotor.set(speed);
-    } else if(flywheelEncoder.getVelocity() > Constants.flyWheelRPM) {
-      speed -= 0.005;
-      flywheelMotor.set(speed);
-    } else {
-      flywheelMotor.set(speed);
-    }
+  }
+
+
+  public CANEncoder flywheelEncoder() {
+    return flywheelEncoder;
   }
 
   public void setShooterRPM(double input) {

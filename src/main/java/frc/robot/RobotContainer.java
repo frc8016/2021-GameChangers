@@ -117,8 +117,8 @@ public class RobotContainer {
     Joy6.whenPressed(m_StopCentrifuge);
     Joy3.whenPressed(m_ExtendIntake);
     Joy5.whenPressed(m_RetractIntake);
-    Joy2.whenHeld(m_DriveToDistance);
-    Joy2.whenReleased(m_arcadeDrive);
+   // Joy2.whenHeld(m_DriveToDistance);
+    //Joy2.whenReleased(m_arcadeDrive);
 
     //These may work. Keep as comments until tested.
     // XboxA.toggleWhenPressed(m_ExtendIntake, true);

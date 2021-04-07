@@ -46,6 +46,9 @@ public class DriveTrain extends SubsystemBase {
   double dsError;
   double dTDIntegral;
 
+  double kp = 0.1;
+  double min_command = 0.05;
+
   double tx, ty, area;
 
   
@@ -166,18 +169,33 @@ public class DriveTrain extends SubsystemBase {
     
   }
 
-  public void driveToZero(double speed){
-    double actualHeading = pigeonIMU.getFusedHeading();
-    double p = Constants.pDriveStraight;
-    double i = Constants.iDriveStraight;
-    double error = actualHeading; 
-    dsError = error;
-    integral += error*0.02;
-    double correction = error*p + integral*i;
+  // public void driveToZero(double speed){
+  //   double actualHeading = pigeonIMU.getFusedHeading();
+  //   double p = Constants.pDriveStraight;
+  //   double i = Constants.iDriveStraight;
+  //   double error = actualHeading; 
+  //   dsError = error;
+  //   integral += error*0.02;
+  //   double correction = error*p + integral*i;
 
-    this.ArcadeDrive(speed, -correction);
+  //   this.ArcadeDrive(speed, -correction);
     
+  // }
+
+public void driveToZero_Limelight(double speed){
+  double error = tx;
+  double correction = 0;
+  if(tx > 1.0){
+    correction = kp*error + min_command;
+  } 
+  else if(tx < 1.0){
+    correction = kp*error - min_command;
+
   }
+  ArcadeDrive(speed, -correction);
+
+}
+
   public double getTargetDistance(){
     double a2 = Math.toRadians(ty);
     double d = (Constants.targetHeight -  Constants.lenseHeight)/

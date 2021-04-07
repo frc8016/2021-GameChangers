@@ -11,7 +11,7 @@ import frc.robot.subsystems.DriveTrain;
 
 
 public class DriveStraight extends CommandBase {
-	Joystick driverStick = new Joystick(Constants.joystickPort);
+	//Joystick driverStick = new Joystick(Constants.joystickPort);
   /** Creates a new DriveStraight. */
   DriveTrain m_driveTrain;
   public DriveStraight(DriveTrain driveTrain) {
@@ -23,13 +23,13 @@ public class DriveStraight extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-   m_driveTrain.zeroHeading(); 
+   //m_driveTrain.zeroHeading(); 
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-	  m_driveTrain.driveToZero(m_driveTrain.driveToDistance(Constants.shootingDistance));
+	  m_driveTrain.driveToZero_Limelight(m_driveTrain.driveToDistance(Constants.shootingDistance));
   }
 
   // Called once the command ends or is interrupted.
